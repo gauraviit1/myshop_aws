@@ -1,0 +1,31 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+   Pahal Store
+{% endblock %}
+
+{% block sidebar %}
+{% include "shop/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block carousel %}
+
+{% include "shop/carousel.html" %}
+  
+{% endblock %}
+
+{% block testimonial %}
+
+{% include "shop/main_page_testimonial.html" %}
+  
+{% endblock %}
+
+
+{% block topseller %}
+	{% include "shop/topseller.html" %}
+{% endblock topseller %}
+
+{% block recommendations %}
+	{% include "shop/recommendation_carousel.html" %}
+{% endblock recommendations %}

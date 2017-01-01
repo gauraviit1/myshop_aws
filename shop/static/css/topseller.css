@@ -1,0 +1,94 @@
+  .carousel-topseller .carousel-control {
+  width: 4%;
+  background-image: none;
+}
+.carousel-topseller .carousel-control.left {
+  margin-left: 15px;
+}
+.carousel-topseller .carousel-control.right {
+  margin-right: 15px;
+}
+.carousel-topseller .cloneditem-1,
+.carousel-topseller .cloneditem-2,
+.carousel-topseller .cloneditem-3 {
+  display: none;
+}
+@media all and (min-width: 768px) {
+  .carousel-topseller .carousel-inner > .active.left,
+  .carousel-topseller .carousel-inner > .prev {
+    left: -50%;
+  }
+  .carousel-topseller .carousel-inner > .active.right,
+  .carousel-topseller .carousel-inner > .next {
+    left: 50%;
+  }
+  .carousel-topseller .carousel-inner > .left,
+  .carousel-topseller .carousel-inner > .prev.right,
+  .carousel-topseller .carousel-inner > .active {
+    left: 0;
+  }
+  .carousel-topseller .carousel-inner .cloneditem-1 {
+    display: block;
+  }
+}
+@media all and (min-width: 768px) and (transform-3d), all and (min-width: 768px) and (-webkit-transform-3d) {
+  .carousel-topseller .carousel-inner > .item.active.right,
+  .carousel-topseller .carousel-inner > .item.next {
+    -webkit-transform: translate3d(50%, 0, 0);
+            transform: translate3d(50%, 0, 0);
+    left: 0;
+  }
+  .carousel-topseller .carousel-inner > .item.active.left,
+  .carousel-topseller .carousel-inner > .item.prev {
+    -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
+    left: 0;
+  }
+  .carousel-topseller .carousel-inner > .item.left,
+  .carousel-topseller .carousel-inner > .item.prev.right,
+  .carousel-topseller .carousel-inner > .item.active {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    left: 0;
+  }
+}
+@media all and (min-width: 992px) {
+  .carousel-topseller .carousel-inner > .active.left,
+  .carousel-topseller .carousel-inner > .prev {
+    left: -25%;
+  }
+  .carousel-topseller .carousel-inner > .active.right,
+  .carousel-topseller .carousel-inner > .next {
+    left: 25%;
+  }
+  .carousel-topseller .carousel-inner > .left,
+  .carousel-topseller .carousel-inner > .prev.right,
+  .carousel-topseller .carousel-inner > .active {
+    left: 0;
+  }
+  .carousel-topseller .carousel-inner .cloneditem-2,
+  .carousel-topseller .carousel-inner .cloneditem-3 {
+    display: block;
+  }
+}
+@media all and (min-width: 992px) and (transform-3d), all and (min-width: 992px) and (-webkit-transform-3d) {
+  .carousel-topseller .carousel-inner > .item.active.right,
+  .carousel-topseller .carousel-inner > .item.next {
+    -webkit-transform: translate3d(25%, 0, 0);
+            transform: translate3d(25%, 0, 0);
+    left: 0;
+  }
+  .carousel-topseller .carousel-inner > .item.active.left,
+  .carousel-topseller .carousel-inner > .item.prev {
+    -webkit-transform: translate3d(-25%, 0, 0);
+            transform: translate3d(-25%, 0, 0);
+    left: 0;
+  }
+  .carousel-topseller .carousel-inner > .item.left,
+  .carousel-topseller .carousel-inner > .item.prev.right,
+  .carousel-topseller .carousel-inner > .item.active {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    left: 0;
+  }
+}

@@ -1,0 +1,10 @@
+boto==2.45.0
+dj-database-url==0.4.1
+Django==1.10.4
+django-crispy-forms==1.6.1
+django-storages==1.5.1
+gunicorn==19.6.0
+Pillow==3.4.2
+psycopg2==2.6.1
+sorl-thumbnail==12.3
+whitenoise==2.0.6

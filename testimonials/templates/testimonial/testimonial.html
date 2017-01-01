@@ -1,0 +1,57 @@
+{% extends "shop/base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block title %}
+Testimonials
+{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top:50px">
+    <div class="row">
+       <div class="col-md-6 pull-right">
+            <form action="." method="post" >
+                {{ form|crispy }}
+                <p><input class="btn btn-block btn-primary"type="submit" value="Post Feedback"></p>
+                {% csrf_token %}
+            </form>
+        </div>
+
+        <div class="col-sm-6 col-md-6 text-justify">
+        <blockquote>
+          <p>Dear Consumer, </p>
+          <p>We are committed to delivering high quality, healthy and delicious products to you. We would like you to help us stay this course and consistently fulfill our promise. So, please give us your feedback, whether it is criticism or encouragement.</p>
+          <p>We welcome your comments on our products, your buying experience or anything else that concerns your interaction with our Prisons Department. We are listening keenly and assure you of our prompt response.</p> 
+
+          <p> --Team Pahal </p>
+        </blockquote>
+        </div>  
+    </div>
+    <div class="row">
+        {% for testimonial in testimonials %}
+        <div class = "col-md-6">
+        <div class="content">
+            <div class="row">
+                <div>
+                    <div class="testimonials">
+                      <div class="active item">
+                          <blockquote><p>{{testimonial}}.</p></blockquote>
+                          <div class="carousel-info">
+                            
+                            <div class="pull-right">
+                              <span class="testimonials-name">{{testimonial.name}}</span>
+                              
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
