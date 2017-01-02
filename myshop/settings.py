@@ -22,7 +22,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-8g=-r5j_h%3njm!$un3u2owe3xf#(aymj)^+(jhl0)1*ap!6o'
+SECRET_KEY = os.environ('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -160,10 +160,10 @@ EMAIL_USE_TLS = True
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
+AWS_ACCESS_KEY_ID = os.environ('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ('AWS_SECRET_ACCESS_KEY')
 
-AWS_ACCESS_KEY_ID = 'AKIAJ4COYFYPNXXIJEFQ'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'myshop-assets-2'
+AWS_STORAGE_BUCKET_NAME = os.environ('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
@@ -184,5 +184,4 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # STATIC_URL = 'http://s3.amazonaws.com/'  + AWS_STORAGE_BUCKET_NAME +"/"
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-TEMPLATE_DEBUG = True
 
