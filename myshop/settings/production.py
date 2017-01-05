@@ -26,7 +26,7 @@ if not settings.DEBUG:
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = False
+    DEBUG = True
 
     # Allow all host headers
     ALLOWED_HOSTS = ['*']
@@ -185,4 +185,4 @@ if not settings.DEBUG:
     # STATIC_URL = 'http://s3.amazonaws.com/'  + AWS_STORAGE_BUCKET_NAME +"/"
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-    TEMPLATE_DEBUG = False
+    TEMPLATE_DEBUG = True
