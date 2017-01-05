@@ -151,7 +151,7 @@ if not settings.DEBUG:
 
     EMAIL_HOST_USER = 'mcjail.shi.hp@gmail.com'
 
-    EMAIL_HOST_PASSWORD = 'Jail!@12'
+    EMAIL_HOST_PASSWORD = os.environ.get(' EMAIL_HOST_PASSWORD')
 
     EMAIL_PORT = 587
 
