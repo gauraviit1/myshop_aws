@@ -7,7 +7,7 @@ from django.contrib.postgres.fields import HStoreField
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from decimal import Decimal
-
+from django.contrib.postgres import fields
 # Create your models here.
 class Cateogry(models.Model):
     name = models.CharField(max_length=200, db_index=True)
@@ -43,6 +43,7 @@ class Product(models.Model):
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    features = fields.HStoreField(blank=True, null = True)
 
     class Meta:
         ordering = ['name']
@@ -68,3 +69,14 @@ class Attribute(models.Model):
 
     class Meta:
         unique_together = ('product', 'weight')
+
+
+from django.db import models, migrations
+
+class Migration(migrations.Migration):
+
+    dependencies = []
+
+    operations = [
+        migrations.RunSQL("CREATE EXTENSION IF NOT EXISTS hstore")
+    ]

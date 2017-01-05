@@ -19,7 +19,7 @@ class AttributeInLine(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     
     list_display = ['name', 'slug', 'price', 'stock',
-                    'available', 'created', 'updated',
+                    'available', 'created', 'updated', 'features',
                     ]
     list_filter = ['available', 'created', 'updated']
     list_editable = ['price', 'stock', 'available']
