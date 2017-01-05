@@ -1,5 +1,10 @@
 try:
 	from .local import *
 except:
-	from .production import *
+	pass
 
+
+try:
+	from .production import *
+except:
+	pass
