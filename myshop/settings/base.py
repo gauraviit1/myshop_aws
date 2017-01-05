@@ -15,8 +15,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import dj_database_url
 
-from urllib.parse import urlparse
 
+import urllib
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -120,7 +120,7 @@ import psycopg2
 
 
 urllib.parse.uses_netloc.append("postgres",)
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
+url = urllib.parse.urlparse.urlparse(os.environ["DATABASE_URL"])
 
 conn = psycopg2.connect(
     database=url.path[1:],
