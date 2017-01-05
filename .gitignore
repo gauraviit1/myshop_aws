@@ -3,7 +3,7 @@ db.sqlite3
 *.pyc
 media/
 pahal project-4bdac47707d3.json
-
+local.py
 
 venv
 *.pyc
