@@ -6,6 +6,6 @@ except:
 	pass
 
 try:
-	from.production import *
+	from .production import *
 except:
 	pass
