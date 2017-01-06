@@ -1,11 +1,14 @@
 
 from .base import *
-# 	from .local import *
-# except:
-# 	pass
-
+live = False
 
 try:
-	from .production import *
+	from .local import *
 except:
-	pass
+	live = True
+
+if live:
+	try:
+		from .production import *
+	except:
+		pass

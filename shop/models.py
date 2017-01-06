@@ -69,14 +69,3 @@ class Attribute(models.Model):
 
     class Meta:
         unique_together = ('product', 'weight')
-
-
-from django.db import models, migrations
-
-class Migration(migrations.Migration):
-
-    dependencies = []
-
-    operations = [
-        migrations.RunSQL("CREATE EXTENSION IF NOT EXISTS hstore")
-    ]
