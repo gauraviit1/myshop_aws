@@ -101,6 +101,7 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -112,12 +113,11 @@ DATABASES = {
     }
 }
 
-import os
-import psycopg2
-import urlparse
 
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+
+urllib.parse.uses_netloc.append("postgres",)
+url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
 
 conn = psycopg2.connect(
     database=url.path[1:],
@@ -128,6 +128,9 @@ conn = psycopg2.connect(
 )
 
 DATABASES['default'] =  dj_database_url.config()
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
