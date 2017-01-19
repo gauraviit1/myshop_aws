@@ -47,25 +47,27 @@
                     {% csrf_token %}
                     <input class ="btn btn-danger" type="submit" value="Add to Cart">
                 </form>
-                {% for atts in product_attributes %}
-                    {% if atts.weight %}
-                        {{atts.weight}}
-                    
-                    {% endif %}
-                    {% if atts.size %}
-                        {{atts.size}}
-                    
-                    {% endif %}
-                    {% if atts.waist_size %}
-                        {{atts.waist_size}}
-                    {% endif %}
-                {% endfor %}
+
+                {% for option, price in zipped_price_option %}
+                <div class="col-md-2">
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                           <p>{{option}}</p>
+                           <p>{{price}}</p>  
+                        </div>
+                    </div>
+                </div>
+                  
+                {% endfor %}                
+
+
+
+
                 {{ product.description|linebreaks }}
-                
+                    
             </div>
         </div>
     </div>
 {% endblock %}
-
 
 

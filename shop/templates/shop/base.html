@@ -211,13 +211,13 @@
                    <div>
             {% with total_items=cart|length %}
             {% if cart|length > 0 %}
-                Your cart:
+                Your <span class="glyphicon glyphicon-shopping-cart"></span>:
                 <a href="{% url 'cart:cart_detail' %}" class="bg-primary" >
                 {{ total_items }} item{{ total_items|pluralize }},
                 Rs. {{ cart.get_total_price }}
                 </a>
              {% else %}
-                Your Cart is empty
+                Your <span class="glyphicon glyphicon-shopping-cart"></span> is empty
             {% endif %}
                 
             {% endwith %}

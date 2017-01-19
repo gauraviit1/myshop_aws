@@ -22,6 +22,7 @@ else:
   # SECURITY WARNING: keep the secret key used in production secret!
 	SECRET_KEY = '-8g=-r5j_h%3njm!$un3u2owe3xf#(aymj)+(jhl0)1*ap!6overmagauravvermagarima'
 	DEBUG = True
+	TEMPLATE_DEBUG = True
 
 
 # Allow all host headers

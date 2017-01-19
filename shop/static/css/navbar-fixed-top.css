@@ -6,3 +6,10 @@ body {
 .navbar-fixed-top {
     min-height: 10px;
 }
+
+
+
+.navbar-default {
+	background-color: #ffffff;
+	border-color: #ffffff;
+}
