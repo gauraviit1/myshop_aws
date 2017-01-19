@@ -317,9 +317,7 @@ ul.errorlist {
     width:120px;
 }
 
-.pahal-logo{
-    position: relative;
-    left:110px;
-    /*z-index: 1;*/
+.custom-container {
+    padding-top: 100px;
 }
 

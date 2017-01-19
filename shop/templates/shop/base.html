@@ -145,16 +145,24 @@
   </head>
 
   <body>
-     
+
+      <div class="container" style="z-index:99; margin-top:-70px; position:relative">
+          <div class="text-center" >
+          <h3 style="font-family: 'Indie Flower', cursive; font-size: 1.15em; 
+          ">"Every rupee spent by you will be used for welfare activities in prisons"</h3>    
+          </div>
+       </div>
+
     <!-- Fixed navbar -->
 
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top"
+    style="z-index:1;">
       <div class="container">
 
         <div class="navbar-header pull-left">
           <a class="navbar-brand" href="http://admis.hp.nic.in/hpprisons/"><img class="img-responsive" src="{% static 'img/hpj-logo.png' %}"></a> 
-        </div>
 
+        </div>
         <div class="navbar-header pull-right clearfix">
 
              <a class="navbar-brand" href="{% url 'shop:main_page' %}" ><img src="{% static 'img/pahal-logo.png' %}"></a>
@@ -170,7 +178,7 @@
         </div>
 
         <div id="navbar" class="navbar-collapse collapse" >
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav" style="margin-top:50px;">
             <li><a href="{% url 'shop:main_page' %}" style="font-family: 'Oswald', sans-serif;"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
             <li class="active dropdown">
               <a href="/" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'Oswald', sans-serif;">Products <span class="caret"></span></a>
@@ -213,8 +221,7 @@
             <li><a href="#about" style="font-family: 'Oswald', sans-serif;">About</a></li>
             <li><a href="#contact" style="font-family: 'Oswald', sans-serif;">Contact</a></li>
             <li><a href="#contact" style="font-family: 'Oswald', sans-serif;">Locate Us</a></li>
-            <li class="pull-right"><a href="#contact" style="font-family: 'Oswald', sans-serif;">
-              <div>
+            <p class="navbar-text pull-right">
               {% with total_items=cart|length %}
               {% if cart|length > 0 %}
                   Your <span class="glyphicon glyphicon-shopping-cart"></span>:
@@ -226,34 +233,18 @@
                   Your <span class="glyphicon glyphicon-shopping-cart"></span> is empty
               {% endif %}
                   
-              {% endwith %}
-
-            </div>  
-
-            </a></li>
-
-                        
+              {% endwith %}</p>
+                       
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            
-            <li class="active" style="padding-top: 10px;">
 
-        
-            </li>
-
-          </ul>
         </div><!--/.nav-collapse -->
 
       </div>
     </nav>
 
-        <div class="container">
-          <div class="text-center center-block" >
-          <h3 style="font-family: 'Indie Flower', cursive; font-size: 1.15em">"Every rupee spent by you will be used for welfare activities in prisons"</h3>    
-          </div>
-        </div>
+
    
-    <div class="container-fluid" style="padding-bottom:10px;">
+    <div class="container-fluid custom-container" style="padding-top:50px; padding-bottom:30px;">
       <div class="row">
         {% block sidebar %}
           
