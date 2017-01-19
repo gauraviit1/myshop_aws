@@ -13,3 +13,27 @@ body {
 	background-color: #ffffff;
 	border-color: #ffffff;
 }
+
+/* CSS used here will be applied after bootstrap.css */
+@media (min-width: 768px) {
+  .navbar-nav {
+  	text-align: left;
+  	float: none;
+  }
+  
+  .navbar-nav > li {
+  	float: none;
+  	display: inline-block;
+  }
+}
+
+/* navbar menu when collapsed */
+@media (max-width: 767px) {
+  .navbar-nav {
+      text-align: left;
+  }
+  .navbar-collapse {
+  clear:both;
+  }
+  
+}
