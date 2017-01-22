@@ -4,7 +4,7 @@ from django.utils.functional import lazy
 from PIL import Image
 from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields import JSONField
-
+import re
 
 # Create your models here.
 class Cateogry(models.Model):
@@ -51,6 +51,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def option_value(self):
+        if self.parent_product:
+            pattern = '(?<=\()(.*?)(?=\))'
+            return re.search(pattern, self.name).group()
 
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.id, self.slug])

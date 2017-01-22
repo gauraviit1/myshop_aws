@@ -35,16 +35,20 @@ def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id,
                                 slug=slug,
                                 available=True)
-    child_products = Product.objects.filter(parent_product=product)
+    child_products = product.product_set.all()
 
     if child_products:
         return redirect(child_products[0])
 
     else:
-        pass
+        try:
+            child_products = product.parent_product.product_set.all()
+        except:
+            child_products = {}
 
     cart_product_form = CartAddProductForm()
     return render(request, 'shop/product/detail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form,
+                   'child_products': child_products,
                    })
