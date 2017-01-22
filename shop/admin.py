@@ -1,5 +1,5 @@
 from django.contrib import admin
-from shop.models import Cateogry, Product, Attribute
+from shop.models import Cateogry, Product
 
 
 # Register your models here.\
@@ -12,19 +12,13 @@ class CateogryAdmin(admin.ModelAdmin):
 admin.site.register(Cateogry, CateogryAdmin)
 
 
-class AttributeInLine(admin.TabularInline):
-		model = Attribute
-
-
 class ProductAdmin(admin.ModelAdmin):
-    
     list_display = ['name', 'slug', 'price', 'stock',
                     'available', 'created', 'updated', 'features',
                     ]
     list_filter = ['available', 'created', 'updated']
     list_editable = ['price', 'stock', 'available']
     prepopulated_fields = {"slug": ('name',)}
-    inlines = [AttributeInLine]
 
 admin.site.register(Product, ProductAdmin)
 

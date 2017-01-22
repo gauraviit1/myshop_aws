@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from shop.models import Cateogry, Product, Attribute
+from shop.models import Cateogry, Product
 from cart.forms import CartAddProductForm
 from testimonials.models import Testimonial_
 
@@ -26,23 +26,10 @@ def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id,
                                      slug=slug,
                                      available=True)
-
-    options = [v for v in product.features['Variety'].values()]
-    options_attribute = ''
-    for key in options[0]:
-        print(key)
-        options_attribute = key
-    print(options_attribute)   
-    price_list = [v['price'] for v in options]
-    options_list = [v[options_attribute] for v in options]
-    
-    zipped_price_option = zip(price_list, options_list)
-    print(zipped_price_option)
     cart_product_form = CartAddProductForm()
     return render(request, 'shop/product/detail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form,
-                   'zipped_price_option': zipped_price_option,
                    })
 
 
