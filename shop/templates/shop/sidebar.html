@@ -1,49 +1,92 @@
-		<div class="col-md-3" style="padding-top: 30px;">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-                            Bakery</a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-
-                            	{% for item in bakery_items %}
-                            		<tr>
-                            				<td>
-                            					<a href="{{ item.get_absolute_url }}">{{ item.name }} <span class="label label-success">Rs. {{ item.price }}</span></a>
-                            				</td>
-                            		</tr>
-                            	{% endfor %}
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-shirtsinbulk" aria-hidden="true"></i>
-                            Clothes / Handicraft </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <table class="table">
-                            	{% for item in handicraft_items %}
-                            		<tr>
-                            				<td>
-                            					<a href="{{ item.get_absolute_url }}">{{ item.name }} <span class="label label-success">Rs. {{ item.price }}</span></a>
-                            				</td>
-                            		</tr>
-                            	{% endfor %}
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-    
+{% load app_filter %}
+<div class="col-md-3" style="padding-top: 30px;">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+          Bakery</a>
+        </h4>
+      </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                  {% for sub_category in bakery_items %}
+                		<tr>
+                				<td>
+                            <div class="panel-group" id="accordion{{forloop.counter}}">
+                                <div class="panel panel-primary">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapseOne{{forloop.counter}}">
+                                      {{ sub_category.name }}</a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse in">
+                                      <div class="panel-body">
+                                          <table class="table">                                            
+                                           {% for item in sub_category|productfilter %}
+                                            <tr>
+                                              <td>
+                                                <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                                              </td>                                              
+                                            </tr>                                              
+                                            {% endfor %}
+                                            </table>                                       
+                                      </div>
+                                  </div>             
+                                </div>
+                            </div>
+                				</td>
+                		</tr>
+                	{% endfor %}
+                </table>
             </div>
-		</div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> <i class="fa fa-shirtsinbulk" aria-hidden="true"></i>
+          Clothes / Handicraft </a>
+        </h4>
+      </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                  {% for sub_category in handicraft_items %}
+                    <tr>
+                        <td>
+                            <div class="panel-group" id="accordion{{forloop.counter}}">
+                                <div class="panel panel-primary">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapseOne{{forloop.counter}}">
+                                      {{ sub_category.name }}</a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapseTwo{{forloop.counter}}" class="panel-collapse collapse in">
+                                      <div class="panel-body">
+                                          <table class="table">                                            
+                                           {% for item in sub_category|productfilter %}
+                                            <tr>
+                                              <td>
+                                                <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                                              </td>                                              
+                                            </tr>                                              
+                                            {% endfor %}
+                                            </table>                                       
+                                      </div>
+                                  </div>             
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
