@@ -18,6 +18,7 @@
                 {% for product in all_unique_products|slice:":1" %}
                   <div class="item active">
                   <div class="col-xs-12 col-sm-6 col-md-3 panel panel-default">
+                      {% if product.image %}
                       {% load thumbnail %}
                       {% thumbnail product.image "120" as im %}
                       <a href="{{ product.get_absolute_url }}">
@@ -26,7 +27,13 @@
                         >
                       </a>
                       {% endthumbnail %}
-                      <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>                            
+                      {% else %}
+                      <a href="{{ product.get_absolute_url }}">
+                        <img class="center-block img-responsive " src="{% static "img/no_image.png" %}" alt="..."
+                        >
+                      </a>
+                      {% endif %}
+                     <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>                            
                   </div>
                 </div>
                   
@@ -35,6 +42,7 @@
                 {% for product in all_unique_products|slice:"1:" %}
                   <div class="item">
                   <div class="col-xs-12 col-sm-6 col-md-3 panel panel-default " >
+                      {% if product.image %}
                       {% load thumbnail %}
                       {% thumbnail product.image "120" as im %}
                       <a href="{{ product.get_absolute_url }}">
@@ -43,6 +51,12 @@
                         >
                       </a>
                       {% endthumbnail %}
+                      {% else %}
+                      <a href="{{ product.get_absolute_url }}">
+                        <img class="center-block img-responsive " src="{% static "img/no_image.png" %}" alt="..."
+                        >
+                      </a>
+                      {% endif %}
                       <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
                   </div>
                 </div>
