@@ -5,5 +5,5 @@ from storemaps.models import Maps
 
 
 def show_map(request):
-		maps_url = Maps.objects.get(id=1)
+		maps_url = Maps.objects.all()
 		return render(request, 'storemaps/maps.html', {'maps_url': maps_url, })

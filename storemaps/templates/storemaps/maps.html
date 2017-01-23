@@ -1,12 +1,21 @@
 {% extends "shop/base.html" %}
-
+{% load static %}
 {% block carousel %}
 <div class="container">
 	<div class="row">
-		<div class="col-md-12 text-center">
-			   <iframe src="{{ maps_url.url }}" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+		<div class="col-md-4">
+			<ul>
+				{% for location in maps_url %}
+					<li class="sidebar" id="sidebar{{forloop.counter}}" data-url="{{location.url}}">
+						<a href="#">{{ location.name }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="col-md-8 text-center">
+			   <iframe name="map" src="" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
 		</div>
 	</div>
 </div>
-
+<script src="{% static 'js/url_getter.js' %}"></script>
 {% endblock %}

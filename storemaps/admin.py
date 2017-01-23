@@ -4,7 +4,7 @@ from storemaps.models import Maps
 
 
 class MapsAdmin(admin.ModelAdmin):
-		list_display = ['url', 'jail']
+		list_display = ['name', 'controller_jail', 'url', ]
 
 
 admin.site.register(Maps, MapsAdmin)

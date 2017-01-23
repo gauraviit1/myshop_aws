@@ -4,4 +4,5 @@ from django.db import models
 
 class Maps(models.Model):
 		url = models.URLField(max_length=500)
-		jail = models.CharField(max_length=100)
+		controller_jail = models.CharField(max_length=100)
+		name = models.CharField(max_length=100)
