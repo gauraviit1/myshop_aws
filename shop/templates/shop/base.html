@@ -1,5 +1,6 @@
 
 {% load static %}
+{% load app_filter%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -188,28 +189,14 @@
                     <div class="col-sm-6">
                       <ul class="multi-column-dropdown">
                         <li><img class="img-responsive center-block" src="{% static 'img/bakery.jpg' %}" style="width:100px"></li>
-                        {% for p in bakery_items %}
-                          
-                         <li>
-                              <a href="{{ p.get_absolute_url }}">{{ p.name }}</a>
-                              
-                         </li>
-                          
-                        {% endfor %}
+                        {% include 'shop/top_navigation_bar_bakery_list.html' %}
 
                       </ul>
                     </div>
                     <div class="col-sm-6">
                       <ul class="multi-column-dropdown">
                         <li><img class="img-responsive center-block" src="{% static 'img/handicraft.png' %}" style="width:100px"></li>
-                          {% for p in handicraft_items %}
-                                  
-                                 <li>
-                                      <a href="{{ p.get_absolute_url }}">{{ p.name }}</a>
-                                      
-                                 </li>
-                                  
-                          {% endfor %}
+                          {% include 'shop/top_navigation_bar_handicraft_list.html' %}
                       </ul>
                     </div>
                     

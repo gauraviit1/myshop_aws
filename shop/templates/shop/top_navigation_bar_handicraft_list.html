@@ -1,0 +1,27 @@
+{% load static %}
+{% load app_filter %}
+
+ 
+<ul>
+  {% for sub_category in handicraft_items %}
+		<li>
+ 
+                    <h6>
+                      
+                      {{ sub_category.name }}
+                    </h6>
+                  
+
+                      
+                          <ul>                                            
+                           {% for item in sub_category|productfilter %}
+                            <li>
+                                <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                              </li>                                              
+                            {% endfor %}
+                          </ul>                                       
+                      
+
+				</li>
+	{% endfor %}
+</ul>
