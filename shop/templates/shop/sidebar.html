@@ -8,40 +8,36 @@
           Bakery</a>
         </h4>
       </div>
-        <div id="collapseOne" class="panel-collapse collapse">
-            <div class="panel-body">
-                <table class="table">
+        <div id="collapseOne" class="panel-collapse collapse in">
+            
+                <ul>
                   {% for sub_category in bakery_items %}
-                		<tr>
-                				<td>
+                		<li>
                             <div class="panel-group" id="accordion{{forloop.counter}}">
                                 <div class="panel panel-primary">
-                                  <div class="panel-heading">
-                                    <h4 class="panel-title">
+                                  
+                                    <h6>
                                       <a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapseOne{{forloop.counter}}">
                                       {{ sub_category.name }}</a>
-                                    </h4>
-                                  </div>
+                                    </h6>
+                                  
                                   <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse in">
-                                      <div class="panel-body">
-                                          <table class="table">                                            
+                                      
+                                          <ul>                                            
                                            {% for item in sub_category|productfilter %}
-                                            <tr>
-                                              <td>
+                                            <li>
                                                 <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
-                                              </td>                                              
-                                            </tr>                                              
+                                              </li>                                              
                                             {% endfor %}
-                                            </table>                                       
-                                      </div>
+                                            </ul>                                       
+                                      
                                   </div>             
                                 </div>
                             </div>
-                				</td>
-                		</tr>
+                				</li>
                 	{% endfor %}
-                </table>
-            </div>
+                </ul>
+            
         </div>
     </div>
     <div class="panel panel-primary">
@@ -52,39 +48,35 @@
         </h4>
       </div>
         <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-                <table class="table">
+            
+                <ul>
                   {% for sub_category in handicraft_items %}
-                    <tr>
-                        <td>
+                    <li>
                             <div class="panel-group" id="accordion{{forloop.counter}}">
                                 <div class="panel panel-primary">
-                                  <div class="panel-heading">
-                                    <h4 class="panel-title">
+                                  
+                                    <h6>
                                       <a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapseOne{{forloop.counter}}">
                                       {{ sub_category.name }}</a>
-                                    </h4>
-                                  </div>
+                                    </h6>
+                                  
                                   <div id="collapseTwo{{forloop.counter}}" class="panel-collapse collapse in">
-                                      <div class="panel-body">
-                                          <table class="table">                                            
+                                      
+                                            <ul>                                            
                                            {% for item in sub_category|productfilter %}
-                                            <tr>
-                                              <td>
+                                              <li>
                                                 <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
-                                              </td>                                              
-                                            </tr>                                              
+                                              </li>                                             
                                             {% endfor %}
-                                            </table>                                       
-                                      </div>
+                                            </ul>                                       
+                                      
                                   </div>             
                                 </div>
                             </div>
-                        </td>
-                    </tr>
+                        </li>
                   {% endfor %}
-                </table>
-            </div>
+                </ul>
+            
         </div>
     </div>
   </div>
