@@ -206,7 +206,7 @@
 
             <li><a href="#about" style="font-family: 'Oswald', sans-serif;">About</a></li>
             <li><a href="#contact" style="font-family: 'Oswald', sans-serif;">Contact</a></li>
-            <li><a href="#contact" style="font-family: 'Oswald', sans-serif;">Locate Us</a></li>
+            <li><a href="{% url 'maps:show_map' %}" style="font-family: 'Oswald', sans-serif;">Locate Us</a></li>
             <p class="navbar-text pull-right">
               {% with total_items=cart|length %}
               {% if cart|length > 0 %}
@@ -260,10 +260,11 @@
 
 
     </div> <!-- /container -->
+
 <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <div class="container">
       <div class="row">
-        .
+.
       </div>
     </div>
 
