@@ -7,5 +7,7 @@ $(document).ready(function(event){
 $('.sidebar').click(function(){
 	url = $(this).attr('data-url');
 	$('iframe[name="map"]').attr('src',url);
+	$('.sidebar').removeClass('active');
+	$(this).addClass('active');
 
 });
