@@ -82,6 +82,7 @@ TEMPLATES = [
                 'cart.context_processors.cart',
                 'shop.context_processors.bakery_items',
                 'shop.context_processors.handicraft_items',
+                'shop.context_processors.all_unique_products',
             ],
         },
     },
