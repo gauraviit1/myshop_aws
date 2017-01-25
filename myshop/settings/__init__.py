@@ -16,7 +16,9 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if live:
 	SECRET_KEY = os.environ.get('SECRET_KEY')
   # SECURITY WARNING: don't run with debug turned on in production!
-	DEBUG = False
+	DEBUG = True
+	TEMPLATE_DEBUG = True
+
 
 else:
   # SECURITY WARNING: keep the secret key used in production secret!
