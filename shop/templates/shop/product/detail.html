@@ -48,14 +48,9 @@
                     <input class ="btn btn-danger" type="submit" value="Add to Cart">
                 </form>
 
-                {% if child_products %}
-                    <h5>Options</h5>
-                    {% for product in child_products %}
-                        <a href="{{ product.get_absolute_url }}"><span class="badge">{{product.option_value}}</span></a>
-                       
-                    {% endfor %}
+
                 {{ product.description|linebreaks }}
-                {% endif %}
+
 
                     
             </div>

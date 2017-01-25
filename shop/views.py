@@ -1,30 +1,30 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from shop.models import Cateogry, Product
+from shop.models import ModifiedCategory, ModifiedProduct
 from cart.forms import CartAddProductForm
 from testimonials.models import Testimonial_
 
 
 # Create your views here.
 def mainPage(request):
-    cateogries = Cateogry.objects.all()
+    
     first_testimonial = Testimonial_.objects.first()
     testimonials = Testimonial_.objects.all()
-    return render(request, 'shop/product/main.html', {'cateogries': cateogries,
+    return render(request, 'shop/product/main.html', {
                                                       'testimonials': testimonials,
                                                       'first_testimonial': first_testimonial, })
 
 
-def product_list(request, cateogry_slug=None):
-    cateogry = None
-    cateogries = Cateogry.objects.all()
+def product_list(request, category_slug=None):
+    category = None
+    categories = ModifiedCategory.objects.all()
     testimonials = Testimonial_.objects.all()[:5]
-    products = Product.objects.filter(available=True)
-    if cateogry_slug:
-        cateogry = get_object_or_404(Cateogry, slug=cateogry_slug)
-        products = products.filter(cateogry=cateogry)
+    products = ModifiedProduct.objects.filter(available=True)
+    if category_slug:
+        category = get_object_or_404(ModifiedCategory, slug=category_slug)
+        products = products.filter(category=category)
     return render(request, 'shop/product/list.html', {
-        'cateogry': cateogry,
-        'cateogries': cateogries,
+        'category': category,
+        'categories': categories,
         'products': products,
         'testimonials': testimonials,
     })
@@ -32,19 +32,10 @@ def product_list(request, cateogry_slug=None):
 
 def product_detail(request, id, slug):
 
-    product = get_object_or_404(Product, id=id,
+    product = get_object_or_404(ModifiedProduct, id=id,
                                 slug=slug,
                                 available=True)
-    child_products = product.product_set.all()
-
-    if child_products:
-        return redirect(child_products[0])
-
-    else:
-        try:
-            child_products = product.parent_product.product_set.all()
-        except:
-            child_products = {}
+    child_products = product.get_children()
 
     cart_product_form = CartAddProductForm()
     return render(request, 'shop/product/detail.html',
