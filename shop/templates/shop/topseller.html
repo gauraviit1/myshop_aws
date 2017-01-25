@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <link rel="stylesheet" href="{% static 'css/topseller.css' %}">
 
 
@@ -18,14 +19,15 @@
     <div class="col-md-12">
       <div class="row panel panel-info" >
         <div class="panel-heading">
-          <div class="panel-title">Top Seller </div>
+          <div class="panel-title">Top Seller</div>
         </div>
         <div class="panel-body">   
             <div class="carousel carousel-topseller slide" id="carousel_topseller">
               <div class="carousel-inner">
-
+                
 
                 {% for product in all_unique_products|slice:":1" %}
+
                   <div class="item active">
                   <div class="col-xs-12 col-sm-6 col-md-3 panel panel-default">
                       {% if product.image %}

@@ -1,9 +1,8 @@
 from django import template
-from shop.models import Product
+from shop.models import ModifiedProduct
 register = template.Library()
 
-
-@register.filter(name='productfilter')
-def productfilter(subcategory):
-		products = subcategory.products.all().filter(parent_product__isnull=True)
+@register.filter(name='filter2')
+def filter2(category):
+		products =ModifiedProduct.objects.filter(category=category)
 		return products
