@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.postgres',
     'storages',
     'mptt',
+    'django_mptt_admin',
 
     'crispy_forms',
     'sorl.thumbnail',

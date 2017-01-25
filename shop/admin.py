@@ -1,6 +1,6 @@
 from django.contrib import admin
 from shop.models import Cateogry, Product, ModifiedCategory, ModifiedProduct
-from mptt.admin import MPTTModelAdmin
+from django_mptt_admin.admin import DjangoMpttAdmin
 
 
 # Register your models here.\
@@ -27,18 +27,19 @@ admin.site.site_header = 'Pahal administration'
 
 admin.site.site_title = 'Pahal administration'
 
-class ModifiedCategoryAdmin(MPTTModelAdmin):
-		list_filter = ['name']
-		prepopulated_fields = {"slug": ("name",)}
-    # specify pixel amount for this ModelAdmin only:
+class ModifiedCategoryAdmin(DjangoMpttAdmin):
+    tree_auto_open = 3
+    list_filter = ['name']
+    prepopulated_fields = {"slug": ("name",)}
+
 
 
 admin.site.register(ModifiedCategory, ModifiedCategoryAdmin)
 
-class ModifiedProductAdmin(MPTTModelAdmin):
-		list_filter = ['name', 'price', 'category', 'parent']
-		prepopulated_fields = {"slug": ("name",)}
-    # specify pixel amount for this ModelAdmin only:
+class ModifiedProductAdmin(DjangoMpttAdmin):
+    tree_auto_open = 3
+    list_filter = ['name', 'price', 'category', 'parent']
+    prepopulated_fields = {"slug": ("name",)}
 
 
 admin.site.register(ModifiedProduct, ModifiedProductAdmin)
