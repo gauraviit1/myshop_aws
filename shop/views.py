@@ -6,7 +6,7 @@ from testimonials.models import Testimonial_
 
 # Create your views here.
 def mainPage(request):
-    
+
     first_testimonial = Testimonial_.objects.first()
     testimonials = Testimonial_.objects.all()
     return render(request, 'shop/product/main.html', {
@@ -35,13 +35,19 @@ def product_detail(request, id, slug):
     product = get_object_or_404(ModifiedProduct, id=id,
                                 slug=slug,
                                 available=True)
-    child_products = product.get_children()
+    if product.is_root_node():
+        child_products = product.get_children()
+    else:
+        child_products= product.parent.get_children()
 
     cart_product_form = CartAddProductForm()
-    return render(request, 'shop/product/detail.html',
+
+    if request.is_ajax():
+        template = 'partial-results.html'
+    else:
+        template = 'shop/product/detail.html'
+    return render(request, template,
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'child_products': child_products,
                    })
-
-

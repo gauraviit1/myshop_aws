@@ -1,0 +1,54 @@
+   {% load static %}
+    <div class ="container" style="padding-top: 50px" id ="products">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 thumbnail">
+                <img class="center-block" src="{% if product.image %}{{ product.image.url }}
+                 {% else %}
+                 {% static 'img/no_image.png' %}
+                {% endif %}">
+
+
+
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <h1>{{ product.name }}</h1>
+                <p>
+                    <div>
+                    <div class="fb-share-button" data-href="{{ product.get_absolute_url }}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ product.get_absolute_url|urlencode }}&amp;src=sdkpreparse">Share</a>
+
+
+                    </div>
+
+
+                    <div >
+                      <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                    </div>
+                    <!-- Place this tag where you want the +1 button to render. -->
+
+                </p>
+                <h3><a href="{{ product.cateogry.get_absolute_url }}">{{ product.cateogry }}</a></h3>
+                <p class="lead">Rs. {{ product.price }}</p>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input class ="btn btn-danger" type="submit" value="Add to Cart">
+                </form>
+
+                {% if child_products %}
+                  <div class="child_options">
+                   {% for product in child_products %}
+                      <a href="{{product.get_absolute_url}}"><span class="badge">{{product.name}}</span></a>
+                  {% endfor %}
+                  </div>
+                {% endif %}
+
+                {{ product.description|linebreaks }}
+
+
+
+            </div>
+        </div>
+        <script src="{% static 'js/option_selector.js' %}">
+        </script>
+    </div>
