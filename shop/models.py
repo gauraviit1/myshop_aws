@@ -132,6 +132,20 @@ class ModifiedProduct(MPTTModel):
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.id, self.slug])
 
+    def get_features(self):
+        if self.features:
+            return self.features
+        else:
+            self.features = self.parent.get_root().features
+            return self.features
+
+    def get_description(self):
+        if self.description:
+            return self.description
+        else:
+            self.description = self.parent.get_root().description
+            return self.description
+
 
 class ProductImages(models.Model):
     image = models.ImageField(upload_to="modifiedproducts/images/%Y/%m/%d",

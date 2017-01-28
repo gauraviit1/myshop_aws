@@ -6,18 +6,12 @@
                  {% else %}
                  {% static 'img/no_image.png' %}
                 {% endif %}">
-
-
-
             </div>
             <div class="col-sm-6 col-md-6">
                 <h1>{{ product.name }}</h1>
                 <p>
                     <div>
-                    <div class="fb-share-button" data-href="{{ product.get_absolute_url }}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ product.get_absolute_url|urlencode }}&amp;src=sdkpreparse">Share</a>
 
-
-                    </div>
 
 
                     <div >
@@ -44,12 +38,31 @@
                   </div>
                 {% endif %}
 
-                {{ product.description|linebreaks }}
-
-
-
+                {% if product.description %}
+                <div class="success">
+                  <h4>Product Description</h4>
+                  {{ product.description|linebreaks }}
+                </div>
+                {% endif %}
+                {% if product.get_features %}
+                  <div >
+                    <table class = "table table-condensed">
+                       <caption>Features</caption>
+                       <tbody>
+                         {% for key, value in product.get_features.items %}
+                            <tr>
+                              <td>{{key}}</td>
+                              <td>{{value}}</td>
+                            </tr>
+                         {% endfor %}
+                       </tbody>
+                    </table>
+                  </div>
+                {% endif %}
             </div>
         </div>
-        <script src="{% static 'js/option_selector.js' %}">
+        <script src="{% static 'js/loadingoverlay.min.js' %}"></script>
+        <script src="{% static 'js/option_selector.js' %}"></script>
+        <script type="text/javascript">
         </script>
     </div>
