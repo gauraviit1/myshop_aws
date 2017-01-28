@@ -1,5 +1,5 @@
 from django.contrib import admin
-from shop.models import Cateogry, Product, ModifiedCategory, ModifiedProduct
+from shop.models import Cateogry, Product, ModifiedCategory, ModifiedProduct, ProductImages
 from django_mptt_admin.admin import DjangoMpttAdmin
 
 
@@ -21,11 +21,13 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['price', 'stock', 'available']
     prepopulated_fields = {"slug": ('name',)}
 
+
 admin.site.register(Product, ProductAdmin)
 
 admin.site.site_header = 'Pahal administration'
 
 admin.site.site_title = 'Pahal administration'
+
 
 class ModifiedCategoryAdmin(DjangoMpttAdmin):
     tree_auto_open = 3
@@ -33,8 +35,8 @@ class ModifiedCategoryAdmin(DjangoMpttAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
-
 admin.site.register(ModifiedCategory, ModifiedCategoryAdmin)
+
 
 class ModifiedProductAdmin(DjangoMpttAdmin):
     tree_auto_open = 3
@@ -43,3 +45,11 @@ class ModifiedProductAdmin(DjangoMpttAdmin):
 
 
 admin.site.register(ModifiedProduct, ModifiedProductAdmin)
+
+
+class ProductImagesAdmin(admin.ModelAdmin):
+    fields = ['product', 'image']
+    list_display = ['product']
+    
+
+admin.site.register(ProductImages, ProductImagesAdmin)

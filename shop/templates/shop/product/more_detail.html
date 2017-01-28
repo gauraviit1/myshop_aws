@@ -2,7 +2,7 @@
     <div class ="container" style="padding-top: 50px" id ="products">
         <div class="row">
             <div class="col-sm-6 col-md-6 thumbnail">
-                <img class="center-block" src="{% if product.image %}{{ product.image.url }}
+                <img class="center-block" src="{% if images %}{{ images.0.image.url }}
                  {% else %}
                  {% static 'img/no_image.png' %}
                 {% endif %}">
@@ -37,6 +37,7 @@
 
                 {% if child_products %}
                   <div class="child_options">
+                    <h5>Options:</h5>
                    {% for product in child_products %}
                       <a href="{{product.get_absolute_url}}"><span class="badge">{{product.name}}</span></a>
                   {% endfor %}

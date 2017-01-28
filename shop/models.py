@@ -1,12 +1,12 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from django.utils.functional import lazy
-from PIL import Image
 from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields import JSONField
 import re
 from mptt.models import MPTTModel, TreeForeignKey
 # Create your models here.
+
+
 class Cateogry(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(db_index=True, unique=True)
@@ -38,7 +38,8 @@ class Product(models.Model):
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to="products/%Y/%m/%d", blank=True)
     description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True,
+                                blank=True)
     stock = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -71,22 +72,20 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
 
-
-
 # Create your models here.
 class ModifiedCategory(MPTTModel):
     name = models.CharField(max_length=200, unique=True, db_index=True)
     slug = models.SlugField(db_index=True, unique=True)
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
+    parent = TreeForeignKey('self', null=True, blank=True,
+                            related_name='children', db_index=True)
 
     class MPTTMeta:
         order_insertion_by = ['name']
 
-    class Meta:    
+    class Meta:
         ordering = ['name']
         verbose_name = 'modified category'
         verbose_name_plural = 'modified categories'
-
 
     def __str__(self):
         return self.name
@@ -104,10 +103,13 @@ class ModifiedCategory(MPTTModel):
 
 class ModifiedProduct(MPTTModel):
     name = models.CharField(max_length=200, unique=True, db_index=True)
-    category = models.ForeignKey(ModifiedCategory, related_name = 'category')
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
+    category = models.ForeignKey(ModifiedCategory,
+                                 related_name='category')
+    parent = TreeForeignKey('self', null=True, blank=True,
+                            related_name='children', db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
-    image = models.ImageField(upload_to="modifiedproducts/%Y/%m/%d", blank=True)
+    image = models.ImageField(upload_to="modifiedproducts/%Y/%m/%d",
+                              blank=True)
     description = models.TextField(blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
@@ -117,16 +119,26 @@ class ModifiedProduct(MPTTModel):
     updated = models.DateTimeField(auto_now=True)
     features = JSONField(blank=True, null=True)
 
-
     def __str__(self):
         return self.name
 
     class MPTTMeta:
         order_insertion_by = ['name']
+
     class Meta:
         ordering = ['name']
         index_together = [('id', 'slug')]
-        
 
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.id, self.slug])
+
+
+class ProductImages(models.Model):
+    image = models.ImageField(upload_to="modifiedproducts/images/%Y/%m/%d",
+                              blank=True)
+    product = models.ForeignKey(ModifiedProduct,
+                                related_name="product")
+
+    class Meta:
+        verbose_name = 'images related with products'
+        verbose_name_plural = 'Product Images'
