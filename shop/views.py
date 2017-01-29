@@ -5,26 +5,6 @@ from testimonials.models import Testimonial_
 
 
 # Create your views here.
-def get_images(product):
-    # get products
-    product = product
-    images = []
-    # if the set has images
-    # load images into the dictionary
-    product_with_images = product.product.all()
-    for product in product_with_images:
-        images.append(product)
-    if not images:
-        try:
-            product = product.get_root()
-            product_with_images = product.product.all()
-            for product in product_with_images:
-                images.append(product)
-        except:
-            pass
-    return images
-
-
 def mainPage(request):
 
     first_testimonial = Testimonial_.objects.first()

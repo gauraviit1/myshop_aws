@@ -21,58 +21,58 @@
         <div class="panel-heading">
           <div class="panel-title">Top Seller</div>
         </div>
-        <div class="panel-body">   
+        <div class="panel-body">
             <div class="carousel carousel-topseller slide" id="carousel_topseller">
               <div class="carousel-inner">
-                
+
 
                 {% for product in all_unique_products|slice:":1" %}
 
                   <div class="item active">
-                  <div class="col-xs-12 col-sm-6 col-md-3 panel panel-default">
-                      {% if product.image %}
-                      {% load thumbnail %}
-                      {% thumbnail product.image "120" as im %}
-                      <a href="{{ product.get_absolute_url }}">
-                        <img class="center-block img-responsive " src="{% if im %}{{ im.url }}
-                        {% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."
-                        >
-                      </a>
-                      {% endthumbnail %}
-                      {% else %}
-                      <a href="{{ product.get_absolute_url }}">
-                        <img class="center-block img-responsive " src="{% static "img/no_image.png" %}" alt="..."
-                        >
-                      </a>
-                      {% endif %}
-                     <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>                            
-                  </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 panel panel-default">
+                        {% if product.get_images %}
+                        {% load thumbnail %}
+                        {% thumbnail product.get_images.0.image "120" as im %}
+                        <a href="{{ product.get_absolute_url }}">
+                          <img class="center-block img-responsive " src="{% if im %}{{ im.url }}
+                          {% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."
+                          >
+                        </a>
+                        {% endthumbnail %}
+                        {% else %}
+                        <a href="{{ product.get_absolute_url }}">
+                          <img class="center-block img-responsive " src="{% static "img/no_image.png" %}" alt="..."
+                          >
+                        </a>
+                        {% endif %}
+                       <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
+                    </div>
                 </div>
-                  
+
                 {% endfor %}
 
                 {% for product in all_unique_products|slice:"1:" %}
                   <div class="item">
-                  <div class="col-xs-12 col-sm-6 col-md-3 panel panel-default " >
-                      {% if product.image %}
-                      {% load thumbnail %}
-                      {% thumbnail product.image "120" as im %}
-                      <a href="{{ product.get_absolute_url }}">
-                        <img class="center-block img-responsive " src="{% if im %}{{ im.url }}
-                        {% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."
-                        >
-                      </a>
-                      {% endthumbnail %}
-                      {% else %}
-                      <a href="{{ product.get_absolute_url }}">
-                        <img class="center-block img-responsive " src="{% static "img/no_image.png" %}" alt="..."
-                        >
-                      </a>
-                      {% endif %}
-                      <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
-                  </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 panel panel-default">
+                        {% if product.get_images %}
+                        {% load thumbnail %}
+                        {% thumbnail product.get_images.0.image "120" as im %}
+                        <a href="{{ product.get_absolute_url }}">
+                          <img class="center-block img-responsive " src="{% if im %}{{ im.url }}
+                          {% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."
+                          >
+                        </a>
+                        {% endthumbnail %}
+                        {% else %}
+                        <a href="{{ product.get_absolute_url }}">
+                          <img class="center-block img-responsive " src="{% static "img/no_image.png" %}" alt="..."
+                          >
+                        </a>
+                        {% endif %}
+                       <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
+                    </div>
                 </div>
-                  
+
                 {% endfor %}
 
 
@@ -84,6 +84,6 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 <script src="{% static 'js/topseller.js' %}"></script>

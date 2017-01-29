@@ -133,18 +133,44 @@ class ModifiedProduct(MPTTModel):
         return reverse('shop:product_detail', args=[self.id, self.slug])
 
     def get_features(self):
-        if self.features:
-            return self.features
-        else:
-            self.features = self.parent.get_root().features
-            return self.features
+        try:
+            if self.features:
+                return self.features
+            else:
+                self.features = self.parent.get_root().features
+                return self.features
+        except:
+            pass
+
+    def get_images(self):
+        try:
+            self.images = []
+            # if the set has images
+            # load images into the dictionary
+            product_with_images = self.product.all()
+            for product in product_with_images:
+                self.images.append(product)
+            if not self.images:
+                try:
+                    product = self.get_root()
+                    product_with_images = product.product.all()
+                    for product in product_with_images:
+                        self.images.append(product)
+                except:
+                    pass
+            return self.images
+        except:
+            pass
 
     def get_description(self):
-        if self.description:
-            return self.description
-        else:
-            self.description = self.parent.get_root().description
-            return self.description
+        try:
+            if self.description:
+                        return self.description
+            else:
+                self.description = self.parent.get_root().description
+                return self.description
+        except:
+            pass
 
 
 class ProductImages(models.Model):
