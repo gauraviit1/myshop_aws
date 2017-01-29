@@ -16,8 +16,8 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if live:
 	SECRET_KEY = os.environ.get('SECRET_KEY')
   # SECURITY WARNING: don't run with debug turned on in production!
-	DEBUG = False
-	TEMPLATE_DEBUG = False
+	DEBUG =True
+	TEMPLATE_DEBUG = True
 
 
 else:
@@ -108,13 +108,13 @@ if live:
 }
 
 
-  
+
 
 	urllib.parse.uses_netloc.append("postgres",)
 	url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
 
 	conn = psycopg2.connect(
-	    database=url.path[1:],      
+	    database=url.path[1:],
 	    user=url.username,
 	    password=url.password,
 	    host=url.hostname,
@@ -131,7 +131,7 @@ else:
 	DATABASES = {
 	    'default': {
 	        'ENGINE': 'django.db.backends.postgresql',
-	        'NAME': 'postgres',                      
+	        'NAME': 'postgres',
 	        'USER': 'postgres',
 	        'PASSWORD': 'gaurav',
 	        'HOST': '',
@@ -220,5 +220,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
-
