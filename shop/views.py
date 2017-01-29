@@ -35,7 +35,6 @@ def product_detail(request, id, slug):
     product = get_object_or_404(ModifiedProduct, id=id,
                                 slug=slug,
                                 available=True)
-    images = get_images(product=product)
     if product.is_root_node():
         child_products = product.get_children()
     else:
@@ -51,5 +50,4 @@ def product_detail(request, id, slug):
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'child_products': child_products,
-                   'images': images,
                    })
