@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from shop.models import ModifiedCategory, ModifiedProduct
 from cart.forms import CartAddProductForm
 from testimonials.models import Testimonial_
@@ -39,15 +39,17 @@ def product_detail(request, id, slug):
         child_products = product.get_children()
     else:
         child_products = product.parent.get_children()
-
-    cart_product_form = CartAddProductForm()
-
-    if request.is_ajax():
-        template = 'partial-results.html'
+    if product.get_children():
+        return redirect(product.get_children()[0])
     else:
-        template = 'shop/product/detail.html'
-    return render(request, template,
-                  {'product': product,
-                   'cart_product_form': cart_product_form,
-                   'child_products': child_products,
-                   })
+        cart_product_form = CartAddProductForm()
+
+        if request.is_ajax():
+            template = 'partial-results.html'
+        else:
+            template = 'shop/product/detail.html'
+        return render(request, template,
+                      {'product': product,
+                       'cart_product_form': cart_product_form,
+                       'child_products': child_products,
+                       })
