@@ -38,7 +38,7 @@
                   </div>
                 {% endif %}
 
-                {% if product.description %}
+                {% if product.get_description %}
                 <div class="success">
                   <h4>Product Description</h4>
                   {{ product.description|linebreaks }}
