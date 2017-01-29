@@ -43,15 +43,15 @@ Your Shopping cart
                         <td>
                             <a class="btn btn-danger" href="{% url 'cart:cart_remove' product.id %}">Remove</a>
                         </td>
-                        <td class="num">&#x20B9; {{ item.price }}</td>
-                        <td class="num">&#x20B9; {{ item.total_price }}</td>
+                        <td class="num"><span class="WebRupee">Rs</span> {{ item.price }}</td>
+                        <td class="num"><span class="WebRupee">Rs</span> {{ item.total_price }}</td>
                     </tr>
-                {% endwith %}            
+                {% endwith %}
             {% endfor %}
             <tr class="total">
                 <td>Total</td>
                 <td colspan="4"></td>
-                <td class="num">&#x20B9;{{ cart.get_total_price }}</td>
+                <td class="num"><span class="WebRupee">Rs</span>{{ cart.get_total_price }}</td>
             </tr>
         </tbody>
     </table>

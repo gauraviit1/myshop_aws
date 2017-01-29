@@ -22,7 +22,7 @@
 
                 </p>
                 <h3><a href="{{ product.cateogry.get_absolute_url }}">{{ product.cateogry }}</a></h3>
-                <p class="lead">Rs. {{ product.price }}</p>
+                <p class="lead"><span class="WebRupee">Rs</span> {{ product.price }}</p>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     {{ cart_product_form }}
                     {% csrf_token %}
