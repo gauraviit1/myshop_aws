@@ -5,7 +5,7 @@
     <div class="panel-body bg-info" style="min-height: 200px; color: #9A3334" >
 		<div class="quote">
 		<i class="fa fa-quote-left fa-pull-left" style="display: inline;"></i>
-		<p id="testimonial" style="display: inline; text-align: justify-all; font-size: 12px;"> {{first_testimonial.comment }} <p>
+		<p id="testimonial" style="display: inline; text-align: justify-all; font-size: 12px;"> {{first_testimonial.comment|truncatewords:80 }} <p>
 		<i class="fa fa-quote-right fa-pull-right" style="display: inline;"></i>
 		</div>
 		<p style="text-align: right; color:#217C7E" id="testimonial_name">&mdash;  {{first_testimonial.name}}</p>
@@ -19,15 +19,15 @@
 
   var testimonial_comment =[];
   var testimonial_name =[];
-  {% for testimonial in testimonials %}
-  testimonial_comment.push("{{testimonial.comment}}");
+  {% for testimonial in testimonials|slice:":5" %}
+  testimonial_comment.push("{{testimonial.comment|truncatewords:80}}");
   testimonial_name.push("{{testimonial.name}}");
 
   {% endfor %}
   var testimonial_length = testimonial_comment.length
   var num = 0;
 
-function change_testimonial(){ 
+function change_testimonial(){
    // if (i == 0){
       $('p#testimonial').animate({'opacity':0}, 400, function(){
         $(this).html(testimonial_comment[num]).animate({'opacity':1},400);
@@ -38,7 +38,7 @@ function change_testimonial(){
       num = (num+1)% testimonial_length;
 
    };
-                   
+
 	window.setInterval(change_testimonial,4000);
 
 </script>
