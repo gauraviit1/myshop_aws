@@ -47,7 +47,7 @@ INSTALLED_APPS = (
     'storages',
     'mptt',
     'django_mptt_admin',
-	'background_image',
+
 
     'crispy_forms',
     'sorl.thumbnail',
