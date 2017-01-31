@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
     <link rel="stylesheet" href="{% static 'css/testimonial-sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'css/panel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/midview.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/WebRupee/2.0/font.min.css">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -126,8 +127,13 @@
       <div class="container" style="z-index:99; margin-top:-70px; position:fixed">
 
           <div class="row" >
-          <h3 style="font-family: 'Indie Flower', cursive; font-size: 1.15em;text-align:center; float: none;
-          ">"Every rupee spent by you will be used for welfare activities in prisons"</h3>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-11">
+              <h3 style="font-family: 'Indie Flower', cursive; font-size: 1.15em;text-align:center; float: none;
+              ">"Every rupee spent by you will be used for welfare activities in prisons"</h3>
+            </div>
           </div>
        </div>
 
@@ -207,7 +213,7 @@
 
 
 
-    <div class="container-fluid custom-container" id="midview" style="padding-top:50px; padding-bottom:30px;">
+    <div class="container custom-container" id="midview" style="padding-top:50px; ">
       <div class="row">
         {% block sidebar %}
 

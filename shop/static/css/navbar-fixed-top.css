@@ -2,7 +2,7 @@ body {
   min-height: 200px;
   padding-top: 70px;
 }
-                                       
+
 .navbar-fixed-top {
     min-height: 10px;
 }
@@ -20,7 +20,7 @@ body {
   	text-align: left;
   	float: none;
   }
-  
+
   .navbar-nav > li {
   	float: none;
   	display: inline-block;
@@ -35,6 +35,5 @@ body {
   .navbar-collapse {
   clear:both;
   }
-  
-}
 
+}

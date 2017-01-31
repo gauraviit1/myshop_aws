@@ -1,11 +1,11 @@
 {% load static %}
-<div class='col-md-3 nopadding' style="padding-top: 30px;">
+<div class='col-md-2 nopadding' style="padding-top: 30px;">
   <div class="panel panel-info" style="min-height: 400px;" >
     <div class="panel-heading" style="font-size: 12px"> What Patrons say about us....</div>
-    <div class="panel-body bg-info" style="min-height: 306px; color: #9A3334" >
+    <div class="panel-body bg-info" style="min-height: 300px; color: #9A3334" >
 		<div class="quote">
 		<i class="fa fa-quote-left fa-pull-left" style="display: inline;"></i>
-		<p id="testimonial" style="display: inline; text-align: justify-all; font-size: 12px;"> {{first_testimonial.comment|truncatewords:80 }} <p>
+		<p id="testimonial" style="display: inline; text-align: justify-all; font-size: 12px;"> {{first_testimonial.comment|truncatewords:50 }} <p>
 		<i class="fa fa-quote-right fa-pull-right" style="display: inline;"></i>
 		</div>
 		<p style="text-align: right; color:#217C7E" id="testimonial_name">&mdash;  {{first_testimonial.name}}</p>
@@ -20,7 +20,7 @@
   var testimonial_comment =[];
   var testimonial_name =[];
   {% for testimonial in testimonials|slice:":5" %}
-  testimonial_comment.push("{{testimonial.comment|truncatewords:80}}");
+  testimonial_comment.push("{{testimonial.comment|truncatewords:50}}");
   testimonial_name.push("{{testimonial.name}}");
 
   {% endfor %}
