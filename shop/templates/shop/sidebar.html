@@ -1,11 +1,11 @@
 {% load app_filter %}
 {% load mptt_tags %}
-<div class="col-md-3" style="padding-top: 30px;">
+<div class="col-md-2 nopadding" style="padding-top: 30px; font-size:13px;">
   <div class="panel-group" id="accordion">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="font-size:16px;"> <i class="fa fa-birthday-cake" aria-hidden="true"></i>
           Bakery <span class="glyphicon glyphicon-triangle-right pull-right"></span> </a>
         </h4>
       </div>
@@ -14,7 +14,7 @@
 
             {% for category,structure in bakery_item|tree_info %}
                 {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
-                    <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name }}</b></a>
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>
@@ -34,9 +34,9 @@
     </div>
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> <i class="fa fa-shirtsinbulk" aria-hidden="true"></i>
-          Clothes / Handicraft <span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
+      <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="font-size:16px;"> <i class="fa fa-shirtsinbulk" aria-hidden="true"></i>
+          Clothes Line<span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
         <div id="collapseTwo" class="panel-collapse collapse">
@@ -44,7 +44,7 @@
 
             {% for category,structure in handicraft_item|tree_info %}
                 {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
-                    <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name }}</b></a>
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>

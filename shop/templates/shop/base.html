@@ -1,5 +1,6 @@
 {% load static %}
 {% load app_filter%}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,6 +37,10 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{% static 'js/carousel.js' %}"></script>
     <style>
+    .nopadding {
+   padding:3px; !important;
+
+}
     body {
       font-family: 'Open Sans', sans-serif;
     }
@@ -119,8 +124,9 @@
   <body>
 
       <div class="container" style="z-index:99; margin-top:-70px; position:fixed">
-          <div class="text-center" >
-          <h3 style="font-family: 'Indie Flower', cursive; font-size: 1.15em;
+
+          <div class="row" >
+          <h3 style="font-family: 'Indie Flower', cursive; font-size: 1.15em;text-align:center; float: none;
           ">"Every rupee spent by you will be used for welfare activities in prisons"</h3>
           </div>
        </div>
@@ -129,10 +135,10 @@
 
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top"
     style="z-index:1;">
-      <div class="container">
+      <div class="container-fluid">
 
         <div class="navbar-header pull-left">
-          <a class="navbar-brand" href="http://admis.hp.nic.in/hpprisons/"><img class="img-responsive" src="{% static 'img/hpj-logo.png' %}"></a>
+          <a class="navbar-brand" href="http://admis.hp.nic.in/hpprisons/"><img style ="padding-top:25px; "class="img-responsive" src="{% static 'img/C-1 Web image.png' %}"></a>
 
         </div>
         <div class="navbar-header pull-right clearfix">
@@ -201,7 +207,7 @@
 
 
 
-    <div class="container-fluid custom-container" style="padding-top:50px; padding-bottom:30px;">
+    <div class="container-fluid custom-container" id="midview" style="padding-top:50px; padding-bottom:30px;">
       <div class="row">
         {% block sidebar %}
 
@@ -214,14 +220,9 @@
         {% endblock %}
       </div>
     </div>
-
     {% block topseller %}
-
-
     {% endblock topseller %}
-
     {% block recommendations %}
-
     {% endblock recommendations %}
 
     <div id="content">

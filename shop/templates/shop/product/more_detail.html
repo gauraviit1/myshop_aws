@@ -33,7 +33,7 @@
                   <div class="child_options">
                     <h5>Options:</h5>
                    {% for product in child_products %}
-                      <a href="{{product.get_absolute_url}}"><span class="badge">{{product.name}}</span></a>
+                      <a href="{{product.get_absolute_url}}"><span class="badge">{{product.get_option_name}}</span></a>
                   {% endfor %}
                   </div>
                 {% endif %}

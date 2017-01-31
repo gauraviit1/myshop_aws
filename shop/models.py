@@ -172,6 +172,13 @@ class ModifiedProduct(MPTTModel):
         except:
             pass
 
+    def get_option_name(self):
+        try:
+            pattern = '(?<=\()(.*?)(?=\))'
+            return re.search(pattern, self.name).group()
+        except:
+            pass
+
 
 class ProductImages(models.Model):
     image = models.ImageField(upload_to="modifiedproducts/images/%Y/%m/%d",
