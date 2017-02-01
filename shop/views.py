@@ -6,7 +6,6 @@ from testimonials.models import Testimonial_
 
 # Create your views here.
 def mainPage(request):
-
     first_testimonial = Testimonial_.objects.first()
     testimonials = Testimonial_.objects.all()
     return render(request, 'shop/product/main.html',

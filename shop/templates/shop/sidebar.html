@@ -5,7 +5,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="font-size:16px;"> <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="font-size:16px;">
           Bakery <span class="glyphicon glyphicon-triangle-right pull-right"></span> </a>
         </h4>
       </div>
@@ -35,11 +35,38 @@
     <div class="panel panel-primary">
       <div class="panel-heading">
       <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="font-size:16px;"> <i class="fa fa-shirtsinbulk" aria-hidden="true"></i>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="font-size:16px;">
           Clothes Line<span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
         <div id="collapseTwo" class="panel-collapse collapse">
+            {% full_tree_for_model shop.ModifiedProduct as products %}
+
+            {% for category,structure in cloth_item|tree_info %}
+                {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
+                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name }}</b></a>
+                        {% for product,structure in category|filter2|tree_info %}
+                        {% if product.is_root_node %}
+                            <ul><li>
+                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                            </li></ul>
+                        {% else %}
+
+                        {% endif %}
+
+                        {% endfor %}
+                {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="font-size:16px;">
+          Handicrafts<span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
+        </h4>
+      </div>
+        <div id="collapseThree" class="panel-collapse collapse">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in handicraft_item|tree_info %}
