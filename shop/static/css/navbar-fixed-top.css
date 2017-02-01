@@ -11,7 +11,9 @@ body {
 
 .navbar-default {
 	background-color: #ffffff;
-	border-color: #ffffff;
+	border-bottom-color: #383085;
+  border-top-color: #EF7F19;
+  border-width:medium;
 }
 
 /* CSS used here will be applied after bootstrap.css */
@@ -35,5 +37,4 @@ body {
   .navbar-collapse {
   clear:both;
   }
-
 }
