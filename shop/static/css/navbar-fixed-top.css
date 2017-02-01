@@ -4,7 +4,7 @@ body {
 }
 
 .navbar-fixed-top {
-    min-height: 10px;
+
 }
 
 
@@ -13,7 +13,8 @@ body {
 	background-color: #ffffff;
 	border-bottom-color: #383085;
   border-top-color: #EF7F19;
-  border-width:medium;
+  border-top-width:thick;
+  border-bottom-width: thin;
 }
 
 /* CSS used here will be applied after bootstrap.css */
@@ -28,6 +29,9 @@ body {
   	display: inline-block;
   }
 }
+
+
+
 
 /* navbar menu when collapsed */
 @media (max-width: 767px) {
