@@ -10,21 +10,32 @@
 {% endblock %}
 
 {% block sidebar %}
-<link rel="stylesheet" href="{% static 'css/midview.css' %}">
 {% include "shop/sidebar.html" %}
 {% endblock sidebar %}
 
 {% block carousel %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
 <div class="col-sm-6 col-md-10" style="padding-top: 30px;">
-     <div class="row" >
+     <div class="row flex" >
          {% for product in products %}
-         <div class="col-sm-6 col-md-3">
+         <div class="col-md-3" >
              <div class="thumbnail" >
                  <div><a href="{{ product.get_absolute_url }}">
-                   <img class="center-block" src="{% if product.get_images %}{{ product.get_images.0.image.url }}
-                    {% else %}
-                    {% static 'img/no_image.png' %}
-                   {% endif %}">
+                   {% if product.get_images %}
+                   {% load thumbnail %}
+                   {% thumbnail product.get_images.0.image "120" as im %}
+                   <a href="{{ product.get_absolute_url }}">
+                     <img class="center-block img-responsive " src="{% if im %}{{ im.url }}
+                     {% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."
+                     >
+                   </a>
+                   {% endthumbnail %}
+                   {% else %}
+                   <a href="{{ product.get_absolute_url }}">
+                     <img class="center-block img-responsive " src="{% static "img/no_image.png" %}" alt="..."
+                     >
+                   </a>
+                   {% endif %}
                  </div>
    <div class="caption text-center">
      <a href="{{product.get_absolute_url}}"><p>{{ product.name }}</p></a>

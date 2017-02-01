@@ -8,5 +8,6 @@ local.py
 venv
 *.pyc
 staticfiles
+shop/static/img
 .env
 db.sqlite3

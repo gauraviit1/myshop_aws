@@ -3,17 +3,6 @@
 
 <link rel="stylesheet" href="{% static 'css/topseller.css' %}">
 
-
-
-{% load thumbnail %}
-{% thumbnail image.image "300" as im %}
-<a href="{{ image.image.url }}">
-<img src="{{ im.url }}" class="image-detail">
-</a>
-{% endthumbnail %}
-
-
-
 <div class="container" id="topseller-container">
   <div class="row"  style="margin-top:-50px;" >
     <div class="col-md-12">
