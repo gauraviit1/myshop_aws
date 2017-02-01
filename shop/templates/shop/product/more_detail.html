@@ -8,7 +8,7 @@
                 {% endif %}">
             </div>
             <div class="col-sm-6 col-md-6">
-                <h1>{{ product.name }}</h1>
+                <h3>{{ product.name }}</h3>
                 <p>
                     <div>
 
@@ -22,16 +22,16 @@
 
                 </p>
                 <h3><a href="{{ product.cateogry.get_absolute_url }}">{{ product.cateogry }}</a></h3>
-                <p class="lead"><span class="WebRupee">Rs</span> {{ product.price }}</p>
+                <p ><span class="WebRupee">Rs</span> {{ product.price }}</p>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     {{ cart_product_form }}
                     {% csrf_token %}
-                    <input class ="btn btn-danger" type="submit" value="Add to Cart">
+                    <input class ="btn btn-xs btn-danger" type="submit" value="Add to Cart">
                 </form>
 
                 {% if child_products %}
                   <div class="child_options">
-                    <h5>Options:</h5>
+                    <h6>Options:</h6>
                    {% for product in child_products %}
                       <a href="{{product.get_absolute_url}}"><span class="badge">{{product.get_option_name}}</span></a>
                   {% endfor %}
@@ -39,14 +39,14 @@
                 {% endif %}
 
                 {% if product.get_description %}
-                <div class="success">
-                  <h4>Product Description</h4>
-                  {{ product.description|linebreaks }}
+                <div class="success" style="font-size:14px;">
+
+                  <p >{{ product.description|linebreaks }}</p>
                 </div>
                 {% endif %}
                 {% if product.get_features %}
                   <div >
-                    <table class = "table table-condensed">
+                    <table class = "table table-condensed" style ="font-size:12px;" id ="table_detail">
                        <caption>Features</caption>
                        <tbody>
                          {% for key, value in product.get_features.items %}
