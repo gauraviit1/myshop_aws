@@ -5,9 +5,10 @@
     display: -webkit-flex;
     display: flex;
     flex:1 0 auto;
+    flex-wrap: wrap;
 }
 
-.panel {
+.thumbnail {
    display: flex;
    flex-direction:column;
    align-content:stretch;
