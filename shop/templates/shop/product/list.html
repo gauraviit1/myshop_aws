@@ -3,65 +3,35 @@
 
 {% block title %}
     {% if cateogry %}
-        {{ cateogry.name }}
+        Kaarabazaar|{{ cateogry.name }}
     {% else %}
-        Products
+        Kaarabazaar|Products
     {% endif %}
 {% endblock %}
 
+{% block sidebar %}
+<link rel="stylesheet" href="{% static 'css/midview.css' %}">
+{% include "shop/sidebar.html" %}
+{% endblock sidebar %}
 
-{% block content %}
-<div class ="row " style="padding-top: 20px">
-   <div class="col-sm-6 col-md-9">  
-        <div class="row" >
-            {% for product in products %}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" >
-                    <div><a href="{{ product.get_absolute_url }}">
-                        <img class="center-block" src="{% if product.image %}{{ product.image.url }}
-                                    {% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."
-                                    style ="max-height:100px;" ></a>
-                    </div> 
-      <div class="caption text-center">
-        <a href="{{product.get_absolute_url}}"><h3>{{ product.name }}</h3></a>
-        <p class="lead"> <kbd> Rs. {{ product.price }} </kbd></p>
-      </div>
-
-
-      
-       
-      
-    </div>
-  </div>
-  {% endfor %}
-
-  </div>
-</div>
-
-<div class="col-sm-6 col-md-3">
-{% for testimonial in testimonials %}
-
-<div class="content">
-    <div class="row">
-        <div>
-            <div class="testimonials">
-              <div class="active item">
-                  <blockquote><p>{{testimonial}}.</p></blockquote>
-                  <div class="carousel-info">
-                    
-                    <div class="pull-right">
-                      <span class="testimonials-name">{{testimonial.name}}</span>
-                      
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block carousel %}
+<div class="col-sm-6 col-md-10" style="padding-top: 30px;">
+     <div class="row" >
+         {% for product in products %}
+         <div class="col-sm-6 col-md-3">
+             <div class="thumbnail" >
+                 <div><a href="{{ product.get_absolute_url }}">
+                     <img class="center-block" src="{% if product.image %}{{ product.image.url }}
+                                 {% else %}{% static "img/no_image.png" %}{% endif %}" alt="..."
+                                 style ="max-height:100px;" ></a>
+                 </div>
+   <div class="caption text-center">
+     <a href="{{product.get_absolute_url}}"><p>{{ product.name }}</p></a>
+     <p><span class="WebRupee">Rs</span> {{ product.price }}</p>
+   </div>
+ </div>
 </div>
 {% endfor %}
-</div>  
-</div>  
+</div>
+</div>
 {% endblock %}
-
-

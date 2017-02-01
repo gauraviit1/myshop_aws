@@ -16,17 +16,13 @@ def mainPage(request):
 
 def product_list(request, category_slug=None):
     category = None
-    categories = ModifiedCategory.objects.all()
-    testimonials = Testimonial_.objects.all()[:5]
-    products = ModifiedProduct.objects.filter(available=True)
+    products = ModifiedProduct.objects.filter(available=True, children=None)
     if category_slug:
         category = get_object_or_404(ModifiedCategory, slug=category_slug)
         products = products.filter(category=category)
     return render(request, 'shop/product/list.html', {
         'category': category,
-        'categories': categories,
         'products': products,
-        'testimonials': testimonials,
     })
 
 
