@@ -30,7 +30,7 @@
                 </form>
 
                 {% if child_products %}
-                  <div class="child_options" style="padding:15px;">
+                  <div class="child_options" style="padding-top:15px;">
                     <h6>Options:</h6>
                    {% for product in child_products %}
                       <a href="{{product.get_absolute_url}}"><span class="badge">{{product.get_option_name}}</span></a>
@@ -39,7 +39,7 @@
                 {% endif %}
 
                 {% if product.get_description %}
-                <div class="success" style="font-size:14px; padding:15px;">
+                <div class="success" style="font-size:14px; padding-top:15px;">
                   <h6>Product Description:</h6>
 
                   <p >{{ product.description|linebreaks }}</p>
