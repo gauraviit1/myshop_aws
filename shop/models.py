@@ -47,7 +47,7 @@ class Product(models.Model):
     features = JSONField(blank=True, null=True)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['created']
         index_together = [('id', 'slug')]
 
     def __str__(self):
@@ -126,7 +126,7 @@ class ModifiedProduct(MPTTModel):
         order_insertion_by = ['name']
 
     class Meta:
-        ordering = ['name']
+        ordering = ['created']
         index_together = [('id', 'slug')]
 
     def get_absolute_url(self):
