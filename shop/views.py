@@ -15,7 +15,7 @@ def mainPage(request):
 
 def product_list(request, category_slug=None):
     category = None
-    products = ModifiedProduct.objects.filter(available=True, children=None)
+    products = ModifiedProduct.objects.filter(level=0)
     if category_slug:
         category = get_object_or_404(ModifiedCategory, slug=category_slug)
         products = products.filter(category=category)
