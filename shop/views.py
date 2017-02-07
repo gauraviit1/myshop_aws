@@ -48,3 +48,9 @@ def product_detail(request, id, slug):
                        'cart_product_form': cart_product_form,
                        'child_products': child_products,
                        })
+
+def termsandconditions(request):
+    return render(request, 'shop/static_templates/termsandconditions.html')
+
+def privacypolicy(request):
+    return render(request, 'shop/static_templates/privacypolicy.html')
