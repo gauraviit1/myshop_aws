@@ -3,10 +3,11 @@
         <div class="row">
 
 
-            <div class="col-sm-6 col-md-6" style="min-height:500px;">
+            <div class="col-sm-6 col-md-6" style="min-height:550px;">
               <div class="bzoom_wrap">
                 <ul id = "bzoom">
                   {% if product.get_images  %}
+                  <p class="image_length" hidden>{{product.get_images|length}}</p>
                   {% load thumbnail %}
                   {% for image in product.get_images %}
                   {% thumbnail image.image "400" as small_image %}
@@ -81,6 +82,7 @@
                 {% endif %}
             </div>
 
+
         </div>
         <link rel="stylesheet" href="{% static 'css/bzoom.css' %}">
         <script src="{% static 'js/loadingoverlay.min.js' %}"></script>
@@ -93,13 +95,16 @@
             thumb_image_width:377.2,
             thumb_image_height:337.2,
             zoom_area_width:450,
-            {% with product.get_images.count as image_length%}
-            small_thumbs: {% if image_length >= 3 %}{{image_length}} {% else %}3{% endif %},
-            {% endwith %}
+            small_thumbs:{{product.get_images|length}},
             small_thumb_height:100,
             small_thumb_width:250,
             // MORE OPTIONS HERE
             });
 
+        </script>
+        <script type="text/javascript">
+          c = $('.image_length').html();
+          if (c ==1 ) {
+              $('.bzoom_small_thumbs > ul > li').remove();}
         </script>
     </div>
