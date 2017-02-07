@@ -1,12 +1,31 @@
    {% load static %}
     <div class ="container" style="padding-top: 50px" id ="products">
         <div class="row">
-            <div class="col-sm-6 col-md-6 thumbnail">
-                <img class="center-block" src="{% if product.get_images %}{{ product.get_images.0.image.url }}
-                 {% else %}
-                 {% static 'img/no_image.png' %}
-                {% endif %}">
+
+
+            <div class="col-sm-6 col-md-6" style="min-height:500px;">
+              <div class="bzoom_wrap">
+                <ul id = "bzoom">
+                  {% if product.get_images  %}
+                  {% load thumbnail %}
+                  {% for image in product.get_images %}
+                  {% thumbnail image.image "400" as small_image %}
+                  <li>
+                    <img class="bzoom_thumb_image" src="{{small_image.url}}" alt="">
+                    <img class="bzoom_big_image" src="{{image.image.url}}" alt="">
+                  </li>
+                  {% endthumbnail %}
+                  {% endfor %}
+                  {% else %}
+                  <li>
+                    <img class="bzoom_thumb_image" src="{% static "img/no_image.png" %}" alt="">
+                    <img class="bzoom_big_image" src="{% static "img/no_image.png" %}" alt="">
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
             </div>
+
             <div class="col-sm-6 col-md-6">
                 <h5>{{ product.name }}</h5>
                 <p>
@@ -61,9 +80,26 @@
                   </div>
                 {% endif %}
             </div>
+
         </div>
+        <link rel="stylesheet" href="{% static 'css/bzoom.css' %}">
         <script src="{% static 'js/loadingoverlay.min.js' %}"></script>
         <script src="{% static 'js/option_selector.js' %}"></script>
+        <script src="{% static 'js/jqzoom.js' %}"></script>
+
         <script type="text/javascript">
+          $("#bzoom").zoom({
+            zoom_area_width: 300,
+            thumb_image_width:377.2,
+            thumb_image_height:337.2,
+            zoom_area_width:450,
+            {% with product.get_images.count as image_length%}
+            small_thumbs: {% if image_length >= 3 %}{{image_length}} {% else %}3{% endif %},
+            {% endwith %}
+            small_thumb_height:100,
+            small_thumb_width:250,
+            // MORE OPTIONS HERE
+            });
+
         </script>
     </div>
