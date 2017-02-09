@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields import JSONField
 import re
 from mptt.models import MPTTModel, TreeForeignKey
+from django.utils.html import mark_safe
 # Create your models here.
 
 
@@ -108,8 +109,6 @@ class ModifiedProduct(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True,
                             related_name='children', db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
-    image = models.ImageField(upload_to="modifiedproducts/%Y/%m/%d",
-                              blank=True)
     description = models.TextField(blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
@@ -189,3 +188,10 @@ class ProductImages(models.Model):
     class Meta:
         verbose_name = 'images related with products'
         verbose_name_plural = 'Product Images'
+
+    
+    def __str__(self):
+        return self.image.name    
+
+    def image_tag(self):
+            return mark_safe('<img src="%s" width="150" height="150" />' % (self.image.url))
