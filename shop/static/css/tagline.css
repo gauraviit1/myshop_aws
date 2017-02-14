@@ -1,0 +1,8 @@
+/*It describes the css for the tag line to keep it centered while keeping it fixed*/
+.fixedTopContainer {
+    position: fixed;
+    padding: -2em;
+    left: 50%;
+    transform: translate(-50%);
+
+}
