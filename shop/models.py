@@ -163,7 +163,7 @@ class ModifiedProduct(MPTTModel):
                 self.images.append(product)
             if not self.images:
                 try:
-                    product = self.get_root()
+                    product = self.parent
                     product_with_images = product.product.all()
                     for product in product_with_images:
                         self.images.append(product)
