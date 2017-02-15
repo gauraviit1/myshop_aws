@@ -48,7 +48,7 @@
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>
-                                <a href="{{ product.get_absolute_url }}">{{ product.name_for_hierarchial_list }}</a>
+                                <a href="{{ product.get_absolute_url }}">{{ product.name_for_hierarchial_lis }}</a>
                             </li></ul>
                         {% else %}
 
@@ -75,7 +75,7 @@
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>
-                                <a href="{{ product.get_absolute_url }}">{{ product.name_for_hierarchial_list }}</a>
+                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                             </li></ul>
                         {% else %}
 

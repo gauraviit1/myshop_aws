@@ -49,11 +49,19 @@
                     <input class ="btn btn-xs btn-danger" type="submit" value="Add to Cart">
                 </form>
 
+
+                {% for options in product.get_options %}
+                    <h6 style="padding-top:2px;">{{ options.option_type }}:</h6>
+                    {% for op in options.parent.get_children %}
+                      <a href="{{op.get_absolute_url}}"><span class="badge">{{op.get_option_name}}</span></a>
+                    {% endfor %}
+                {% endfor %}
+
                 {% if child_products %}
-                  <div class="child_options" style="padding-top:15px;">
-                    <h6>Options:</h6>
+                  <div class="child_options" style="padding-top:2px;">
+                    <h6>{{child_products.0.option_type}}:</h6>
                    {% for product in child_products %}
-                      <a href="{{product.get_absolute_url}}"><span class="badge">{{product.get_option_name}}</span></a>
+                      <a href="{{product.get_absolute_url}}"><span class="badge small">{{product.get_option_name}}</span></a>
                   {% endfor %}
                   </div>
                 {% endif %}
