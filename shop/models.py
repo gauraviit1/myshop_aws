@@ -106,12 +106,12 @@ class ModifiedCategory(MPTTModel):
     def get_description(self):
         try:
             if self.description:
-                        return self.description
-            else:
-                self.description = self.parent.get_root().description
                 return self.description
+            else:
+                return self.parent.get_description()
         except:
             pass
+
 
 
 class ModifiedProduct(MPTTModel):
@@ -143,15 +143,15 @@ class ModifiedProduct(MPTTModel):
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.id, self.slug])
 
+
     def get_features(self):
         try:
             if self.features:
                 return self.features
             else:
-                self.features = self.parent.get_root().features
-                return self.features
+                return self.parent.get_features()
         except:
-            pass
+            pass        
 
     def get_images(self):
         try:
@@ -176,10 +176,9 @@ class ModifiedProduct(MPTTModel):
     def get_description(self):
         try:
             if self.description:
-                        return self.description
-            else:
-                self.description = self.parent.get_root().description
                 return self.description
+            else:
+                return self.parent.get_description()
         except:
             pass
 
