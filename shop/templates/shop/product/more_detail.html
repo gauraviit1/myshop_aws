@@ -1,4 +1,5 @@
    {% load static %}
+   {% load thumbnail %}
     <div class ="container" style="padding-top: 50px" id ="products">
         <div class="row">
 
@@ -8,14 +9,13 @@
                 <ul id = "bzoom">
                   {% if product.get_images  %}
                   <p class="image_length" hidden>{{product.get_images|length}}</p>
-                  {% load thumbnail %}
+                  
                   {% for image in product.get_images %}
-                  {% thumbnail image.image "400" as small_image %}
                   <li>
-                    <img class="bzoom_thumb_image" src="{{small_image.url}}" alt="">
+                    <img class="bzoom_thumb_image" src="{{image.image.url}}" alt="">
                     <img class="bzoom_big_image" src="{{image.image.url}}" alt="">
                   </li>
-                  {% endthumbnail %}
+
                   {% endfor %}
                   {% else %}
                   <li>
@@ -70,7 +70,7 @@
                 <div class="success" style="font-size:14px; padding-top:15px;">
                   <h6>Product Description:</h6>
 
-                  <p >{{ product.get_description|linebreaks }}</p>
+                  <p >{{ product.description|linebreaks }}</p>
                 </div>
                 {% endif %}
                 {% if product.category.get_description %}

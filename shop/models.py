@@ -155,23 +155,13 @@ class ModifiedProduct(MPTTModel):
 
     def get_images(self):
         try:
-            self.images = []
-            # if the set has images
-            # load images into the dictionary
-            product_with_images = self.product.all()
-            for product in product_with_images:
-                self.images.append(product)
-            if not self.images:
-                try:
-                    product = self.parent
-                    product_with_images = product.product.all()
-                    for product in product_with_images:
-                        self.images.append(product)
-                except:
-                    pass
-            return self.images
+            if self.product.all():
+                return self.product.all()
+            else:
+                return self.parent.get_images()
         except:
             pass
+ 
 
     def get_description(self):
         try:
