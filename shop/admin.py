@@ -43,13 +43,14 @@ class ProductImagesAdmin(admin.StackedInline):
     fields = ['image', 'image_tag']
     readonly_fields = ('image_tag',)
 
+
 class ModifiedProductAdmin(DjangoMpttAdmin):
     tree_auto_open = 3
+    list_display = ['name', 'price']
+    list_editable = ['price']
     list_filter = ['name', 'price', 'category', 'parent']
     prepopulated_fields = {"slug": ("name",)}
-    inlines = [ProductImagesAdmin,]
+    inlines = [ProductImagesAdmin, ]
 
 
 admin.site.register(ModifiedProduct, ModifiedProductAdmin)
-
-    
