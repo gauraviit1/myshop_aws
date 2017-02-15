@@ -73,6 +73,7 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
 
+
 # Create your models here.
 class ModifiedCategory(MPTTModel):
     name = models.CharField(max_length=200, unique=True, db_index=True)
@@ -188,6 +189,13 @@ class ModifiedProduct(MPTTModel):
             return re.search(pattern, self.name).group()
         except:
             pass
+
+    def name_for_hierarchial_list(self):
+        try:
+            pattern = '(?<=\()(.*?)(?=\))'
+            return re.search(pattern, self.name).group()
+        except:
+            return self.name
 
 
 class ProductImages(models.Model):

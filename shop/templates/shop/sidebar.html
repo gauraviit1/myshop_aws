@@ -9,7 +9,7 @@
           Bakery <span class="glyphicon glyphicon-triangle-right pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
+        <div id="collapseOne" class="panel-collapse collapse">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in bakery_item|tree_info %}
@@ -18,7 +18,7 @@
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>
-                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                <a href="{{ product.get_absolute_url }}">{{ product.name_for_hierarchial_list}}</a>
                             </li></ul>
                         {% else %}
 
@@ -39,7 +39,7 @@
           Clothes Line<span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
+        <div id="collapseTwo" class="panel-collapse collapse in">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in cloth_item|tree_info %}
@@ -48,7 +48,7 @@
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>
-                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                <a href="{{ product.get_absolute_url }}">{{ product.name_for_hierarchial_list }}</a>
                             </li></ul>
                         {% else %}
 
@@ -75,7 +75,7 @@
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>
-                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                <a href="{{ product.get_absolute_url }}">{{ product.name_for_hierarchial_list }}</a>
                             </li></ul>
                         {% else %}
 
