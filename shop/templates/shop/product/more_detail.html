@@ -8,14 +8,14 @@
               <div class="bzoom_wrap">
                 <ul id = "bzoom">
                   {% if product.get_images  %}
-                  <p class="image_length" hidden>{{product.get_images|length}}</p>
-                  
+                  <p class="image_length" hidden>{{product.get_images|length}}</p>                  
                   {% for image in product.get_images %}
+                  {% thumbnail image.image "400" as small_image %}
                   <li>
-                    <img class="bzoom_thumb_image" src="{{image.image.url}}" alt="">
+                    <img class="bzoom_thumb_image" src="{{small_image.url}}" alt="">
                     <img class="bzoom_big_image" src="{{image.image.url}}" alt="">
                   </li>
-
+                  {% endthumbnail %}
                   {% endfor %}
                   {% else %}
                   <li>
