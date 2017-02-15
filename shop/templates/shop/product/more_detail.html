@@ -65,6 +65,13 @@
                   <p >{{ product.description|linebreaks }}</p>
                 </div>
                 {% endif %}
+                {% if product.category.get_description %}
+                <div class="success" style="font-size:14px; padding-top:15px;">
+                  <h6>Category Description:</h6>
+
+                  <p >{{ product.category.get_description|linebreaks }}</p>
+                </div>
+                {% endif %}
                 {% if product.get_features %}
                   <div >
                     <table class = "table table-condensed" style ="font-size:12px;" id ="table_detail">

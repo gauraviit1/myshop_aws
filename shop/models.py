@@ -79,6 +79,7 @@ class ModifiedCategory(MPTTModel):
     slug = models.SlugField(db_index=True, unique=True)
     parent = TreeForeignKey('self', null=True, blank=True,
                             related_name='children', db_index=True)
+    description = models.TextField(blank=True)
 
     class MPTTMeta:
         order_insertion_by = ['name']
@@ -100,6 +101,16 @@ class ModifiedCategory(MPTTModel):
             if val:
                 setattr(self, field_name, val.capitalize())
         super().save(*args, **kwargs)
+
+    def get_description(self):
+        try:
+            if self.description:
+                        return self.description
+            else:
+                self.description = self.parent.get_root().description
+                return self.description
+        except:
+            pass
 
 
 class ModifiedProduct(MPTTModel):
@@ -189,9 +200,9 @@ class ProductImages(models.Model):
         verbose_name = 'images related with products'
         verbose_name_plural = 'Product Images'
 
-    
+
     def __str__(self):
-        return self.image.name    
+        return self.image.name
 
     def image_tag(self):
             return mark_safe('<img src="%s" width="150" height="150" />' % (self.image.url))
