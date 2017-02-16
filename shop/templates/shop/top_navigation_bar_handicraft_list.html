@@ -8,7 +8,7 @@
                 {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
                     <a href="{{ category.get_absolute_url }}"><b>{{ category.name_for_hierarchial_list }}</b></a>
                         {% for product,structure in category|filter2|tree_info %}
-                        {% if product.is_root_node %}
+                        {% if product.is_root_node and product.visible %}
                             <ul><li>
                                 <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                             </li></ul>

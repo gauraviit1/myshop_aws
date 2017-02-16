@@ -47,6 +47,7 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True)
     features = JSONField(blank=True, null=True)
 
+
     class Meta:
         ordering = ['created']
         index_together = [('id', 'slug')]
@@ -136,6 +137,7 @@ class ModifiedProduct(MPTTModel):
     updated = models.DateTimeField(auto_now=True)
     features = JSONField(blank=True, null=True)
     option_type = models.CharField(max_length=20, blank=True)
+    visible = models.BooleanField(default = True)
 
     def __str__(self):
         return self.category.name + " " + self.name 
