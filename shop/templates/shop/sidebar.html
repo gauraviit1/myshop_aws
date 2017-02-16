@@ -14,7 +14,7 @@
 
             {% for category,structure in bakery_item|tree_info %}
                 {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
-                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name }}</b></a>
+                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name_for_hierarchial_list }}</b></a>
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>
@@ -44,7 +44,7 @@
 
             {% for category,structure in cloth_item|tree_info %}
                 {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
-                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name }}</b></a>
+                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name_for_hierarchial_list }}</b></a>
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>
@@ -71,7 +71,7 @@
 
             {% for category,structure in handicraft_item|tree_info %}
                 {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
-                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name }}</b></a>
+                    <a href="{{ category.get_absolute_url }}"><b>{{ category.name_for_hierarchial_list }}</b></a>
                         {% for product,structure in category|filter2|tree_info %}
                         {% if product.is_root_node %}
                             <ul><li>

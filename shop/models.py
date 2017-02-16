@@ -112,6 +112,13 @@ class ModifiedCategory(MPTTModel):
         except:
             pass
 
+    def name_for_hierarchial_list(self):
+        try:
+            pattern = '(?<=\()(.*?)(?=\))'
+            return re.findall(pattern, self.name)[-1].capitalize()
+        except:
+            return self.name
+
 
 
 class ModifiedProduct(MPTTModel):
