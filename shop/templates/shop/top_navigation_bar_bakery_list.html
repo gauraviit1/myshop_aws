@@ -7,7 +7,7 @@
 
 {% for category,structure in bakery_item|tree_info %}
     {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
-        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+        <a href="{{ category.get_absolute_url }}">{{ category.name_for_hierarchial_list }}</a>
             {% for product,structure1 in category|filter2|tree_info %}
             {% if product.is_root_node %}
                 <ul><li>
