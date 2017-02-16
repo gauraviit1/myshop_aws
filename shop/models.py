@@ -131,7 +131,7 @@ class ModifiedProduct(MPTTModel):
     option_type = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
-        return self.category.name + self.name 
+        return self.category.name + " " + self.name 
 
     class MPTTMeta:
         order_insertion_by = ['name']
