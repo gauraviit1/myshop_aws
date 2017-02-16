@@ -198,6 +198,10 @@ class ModifiedProduct(MPTTModel):
         return options
 
 
+    def get_breadcrums(self):
+        list = [m for m in self.category.get_ancestors()] + [self.category] + [m for m in self.get_ancestors()] + [self]
+        return list
+
 class ProductImages(models.Model):
     image = models.ImageField(upload_to="modifiedproducts/images/%Y/%m/%d",
                               blank=True)

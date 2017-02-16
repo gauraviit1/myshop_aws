@@ -5,6 +5,20 @@
 
 
             <div class="col-sm-6 col-md-6" style="min-height:550px;">
+            <div>
+              <span class="badge-info">
+              <a href="{% url 'shop:main_page' %}">Home</a> >
+              {% for link in product.get_breadcrums %}
+              {% if not forloop.last %}
+              <a href="{{link.get_absolute_url}}">{{link.name_for_hierarchial_list}} </a> >
+              {% else %}
+              <a href="{{link.get_absolute_url}}">{{link.name_for_hierarchial_list}}</a>
+              {% endif %}
+              {% endfor %}
+              </span>
+            </div>
+
+
               <div class="bzoom_wrap">
                 <ul id = "bzoom">
                   {% if product.get_images  %}
