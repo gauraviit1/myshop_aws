@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from shop.models import ModifiedCategory, ModifiedProduct
 from cart.forms import CartAddProductForm
 from testimonials.models import Testimonial_
-
+import requests
+import json
+from shop.forms import PincodeForm
 
 # Create your views here.
 def mainPage(request):
@@ -34,7 +36,7 @@ def category_list(request, category_slug=None):
 
 
 def product_detail(request, id, slug):
-
+    pincode_form = PincodeForm()
     product = get_object_or_404(ModifiedProduct, id=id,
                                 slug=slug,
                                 available=True)
@@ -55,6 +57,7 @@ def product_detail(request, id, slug):
                       {'product': product,
                        'cart_product_form': cart_product_form,
                        'child_products': child_products,
+                       'pincode_form':pincode_form,
                        })
 
 def termsandconditions(request):
@@ -62,3 +65,20 @@ def termsandconditions(request):
 
 def privacypolicy(request):
     return render(request, 'shop/static_templates/privacypolicy.html')
+
+
+def pincode_availaiblity(request, pincode):
+    address = "https://pincode.saratchandra.in/api/pincode/" + str(pincode)
+    response = requests.get(address)
+    json_data = json.loads(response.text)
+
+    status = json_data["status"]
+
+    if (status == 200):
+        address_details = json_data["data"][0]
+        success = True
+        return {'address_details': address_details, 'success': success}
+    else:
+        success = False
+        return {'success':success, 'message': json_data["message"]}
+

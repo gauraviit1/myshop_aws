@@ -33,8 +33,8 @@
                   {% endfor %}
                   {% else %}
                   <li>
-                    <img class="bzoom_thumb_image" src="{% static "img/no_image.png" %}" alt="">
-                    <img class="bzoom_big_image" src="{% static "img/no_image.png" %}" alt="">
+                    <img class="bzoom_thumb_image" src="{% static 'img/no_image.png' %}" alt="">
+                    <img class="bzoom_big_image" src="{% static 'img/no_image.png' %}" alt="">
                   </li>
                   {% endif %}
                 </ul>
@@ -55,15 +55,17 @@
                     <!-- Place this tag where you want the +1 button to render. -->
 
                 </p>
-                <h3><a href="{{ product.cateogry.get_absolute_url }}">{{ product.cateogry }}</a></h3>
-                <p ><span class="WebRupee">Rs</span> {{ product.price }}</p>
+
+                  <div class="row">
+                    <div class="col-sm-6 nopadding">
+
+                <h6><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h6>
+                <p ><span class="WebRupee">Rs</span> {{ product.price }} <span class="small"> + Shipping Charges</span> </p>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     {{ cart_product_form }}
                     {% csrf_token %}
                     <input class ="btn btn-xs btn-danger" type="submit" value="Add to Cart">
                 </form>
-
-
                 {% for options in product.get_options %}
                     <h6 style="padding-top:2px;">{{ options.option_type }}:</h6>
                     {% for op in options.parent.get_children %}
@@ -79,6 +81,44 @@
                   {% endfor %}
                   </div>
                 {% endif %}
+
+                    </div>
+
+                    <div class="col-sm-6 nopadding">
+                      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
+                      <p>Estimated Shipping Charges</p>
+                      <p>Rs. 30</p>
+                      <a href="#" data-toggle="tooltip" data-html="true" data-placement="bottom" title="For all orders above <span class='WebRupee'>Rs.</span> 800, shipping is free. Otherwise the charges are based on the distance between our nearest serving store and the delivery address.">Read Shipping Charges Policy</a>
+                      <form action="#" method="post" id ="pincodeform">
+                          {% csrf_token %}
+                          {{ pincode_form}}
+                          <input type="submit" value="Check Availablity" />
+                      </form>
+                      <script type="text/javascript">
+                        $(function () {
+                          $('[data-toggle="tooltip"]').tooltip()
+                        })
+                      </script> 
+                      <script type="text/javascript">
+                        $(document).on('submit', '#pincodeform', function(e){
+                          e.preventDefault();
+                          pincode: $('#id_pincode').val().toString();
+                          myurl = '/pincode/' + pincode;
+                          alert(myurl);
+                          $.ajax({
+                            type:'POST',
+                            url:'/user/create',
+                            data:{
+                              pincode: $('#id_pincode').val(),
+                            },
+                            success:function()
+                          });
+                        });
+                      </script>                       
+                    </div>
+                  </div>
+
+
 
                 {% if product.get_description %}
                 <div class="success" style="font-size:14px; padding-top:15px;">
