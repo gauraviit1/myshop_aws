@@ -5,7 +5,7 @@ from shop import views
 urlpatterns = [
     url(r'^$', views.mainPage, name='main_page'),
     url(r'^$', views.product_list, name='product_list'),
-    url(r'^pincode/(?P<pincode>[-\w]+)/$', views.pincode_availaiblity, name='pincode_availaiblity'),
+    url(r'^pincode/$', views.pincode_availaiblity, name='pincode_availaiblity'),
     url(r'^termsandconditions/$', views.termsandconditions, name='terms_and_conditions'),
     url(r'^privacypolicy/$', views.privacypolicy, name='privacy_policy'),
     url(r'^(?P<category_slug>[-\w]+)/$', views.category_list,

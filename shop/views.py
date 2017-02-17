@@ -6,6 +6,8 @@ import requests
 import json
 from shop.forms import PincodeForm
 
+from django.http import JsonResponse
+
 # Create your views here.
 def mainPage(request):
     first_testimonial = Testimonial_.objects.first()
@@ -67,18 +69,12 @@ def privacypolicy(request):
     return render(request, 'shop/static_templates/privacypolicy.html')
 
 
-def pincode_availaiblity(request, pincode):
+def pincode_availaiblity(request):
+    pincode = request.GET.get('pincode',None)
     address = "https://pincode.saratchandra.in/api/pincode/" + str(pincode)
     response = requests.get(address)
     json_data = json.loads(response.text)
+    return JsonResponse(json_data)
 
-    status = json_data["status"]
 
-    if (status == 200):
-        address_details = json_data["data"][0]
-        success = True
-        return {'address_details': address_details, 'success': success}
-    else:
-        success = False
-        return {'success':success, 'message': json_data["message"]}
 

@@ -57,7 +57,7 @@
                 </p>
 
                   <div class="row">
-                    <div class="col-sm-6 nopadding">
+                    <div class="col-sm-6  nopadding">
 
                 <h6><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h6>
                 <p ><span class="WebRupee">Rs</span> {{ product.price }} <span class="small"> + Shipping Charges</span> </p>
@@ -94,6 +94,8 @@
                           {{ pincode_form}}
                           <input type="submit" value="Check Availablity" />
                       </form>
+                      <p id="available_check"></p>
+
                       <script type="text/javascript">
                         $(function () {
                           $('[data-toggle="tooltip"]').tooltip()
@@ -102,17 +104,29 @@
                       <script type="text/javascript">
                         $(document).on('submit', '#pincodeform', function(e){
                           e.preventDefault();
-                          pincode: $('#id_pincode').val().toString();
-                          myurl = '/pincode/' + pincode;
-                          alert(myurl);
+                          var pincode = $('#id_pincode').val()
+                          var pincode_url = "/shop/pincode/"
+
                           $.ajax({
-                            type:'POST',
-                            url:'/user/create',
+                            url: pincode_url,
                             data:{
-                              pincode: $('#id_pincode').val(),
+                              'pincode':pincode,
                             },
-                            success:function()
+                            dataType: 'json',
+                            success: function(data){
+                              if (data["status"] == 200){
+                                $('#available_check').html("Product available at " + data["data"][0]['district']);
+                              }
+                              else {
+                                $('#available_check').html(data["message"]);
+                              }
+                              
+                            }
+                            
                           });
+
+                          
+            
                         });
                       </script>                       
                     </div>
