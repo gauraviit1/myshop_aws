@@ -104,8 +104,8 @@
                       <script type="text/javascript">
                         $(document).on('submit', '#pincodeform', function(e){
                           e.preventDefault();
-                          var pincode = $('#id_pincode').val()
-                          var pincode_url = "/shop/pincode/"
+                          var pincode = $('#id_pincode').val();
+                          var pincode_url = "/shop/pincode/";
 
                           $.ajax({
                             url: pincode_url,
@@ -164,14 +164,87 @@
                   </div>
                 {% endif %}
             </div>
+            <p id="city"></p>
 
+<script>
+$(document).ready( function () {
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else { 
+       $('#available_check').html("Geolocation is not supported by this browser.");
+    }
+}
 
+function showPosition(position) {
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+        $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=false",
+        data: {},
+        success: function(data) {
+            $.each( data['results'],function(i, val) {
+                $.each( val['address_components'],function(i, val) {
+                    if (val['types'] == "postal_code") {
+                        if (val['long_name']!="") {
+                            get_pincode_by_location(val['long_name']);
+                            }
+                        else {
+                            $('#available_check').html("We are sorry that we could not estimate your location. Kindly input the pincode");
+                        }
+                    }
+                });
+            });
+        },
+        error: function () { console.log('error'); } 
+    }); 
+}
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+          $('#available_check').html("You have denied your location. Kindly input the pincode for checking availability in your area.")
+           break;
+        case error.POSITION_UNAVAILABLE:
+            $('#available_check').html("Location information is unavailable.")
+            break;
+        case error.TIMEOUT:
+            $('#available_check').html("The request to get user location timed out.")
+            break;
+        case error.UNKNOWN_ERROR:
+            $('#available_check').html("An unknown error occurred.")
+            break;
+    }
+}
+getLocation();
+    function get_pincode_by_location(pincode_received){      
+      var pincode = pincode_received;
+      var pincode_url = "/shop/pincode/";
+      $.ajax({
+        url: pincode_url,
+        data:{
+          'pincode':pincode,
+        },
+        dataType: 'json',
+        success: function(data){
+          if (data["status"] == 200){
+            $('#available_check').html("We have estimated your pincode to be "+  pincode + "." +
+            "This product is definately available at <em>" + data["data"][0]['district']) + "</em> .";
+          }
+          else {
+            $('#available_check').html(data["message"]);
+          }          
+        }        
+      });    
+    };
+});
+</script>
         </div>
         <link rel="stylesheet" href="{% static 'css/bzoom.css' %}">
         <script src="{% static 'js/loadingoverlay.min.js' %}"></script>
         <script src="{% static 'js/option_selector.js' %}"></script>
         <script src="{% static 'js/jqzoom.js' %}"></script>
-
         <script type="text/javascript">
           $("#bzoom").zoom({
             zoom_area_width: 800,
@@ -183,7 +256,6 @@
             small_thumb_width:250,
             // MORE OPTIONS HERE
             });
-
         </script>
         <script type="text/javascript">
           c = $('.image_length').html();
