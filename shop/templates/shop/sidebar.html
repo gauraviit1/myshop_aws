@@ -1,5 +1,6 @@
 {% load app_filter %}
 {% load mptt_tags %}
+{% load static %}
 <div class="col-md-2 nopadding" style="padding-top: 30px; font-size:13px;">
   <div class="panel-group" id="accordion">
     <div class="panel panel-primary">
@@ -9,7 +10,7 @@
           Bakery <span class="glyphicon glyphicon-triangle-right pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
+        <div id="collapseOne" class="panel-collapse collapse in sidebarlist">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in bakery_item|tree_info %}
@@ -39,9 +40,8 @@
           Clothes Line<span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
+        <div id="collapseTwo" class="panel-collapse collapse sidebarlist">
             {% full_tree_for_model shop.ModifiedProduct as products %}
-
             {% for category,structure in cloth_item|tree_info %}
                 {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
                     <a href="{{ category.get_absolute_url }}"><b>{{ category.name_for_hierarchial_list }}</b></a>
@@ -51,9 +51,7 @@
                                 <a href="{{ product.get_absolute_url }}">{{ product.name_for_hierarchial_list }}</a>
                             </li></ul>
                         {% else %}
-
-                        {% endif %}
-
+                        {% endif %} 
                         {% endfor %}
                 {% for level in structure.closed_levels %}</li></ul>{% endfor %}
             {% endfor %}
@@ -66,7 +64,7 @@
           Handicrafts<span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseThree" class="panel-collapse collapse">
+        <div id="collapseThree" class="panel-collapse collapse sidebarlist">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in handicraft_item|tree_info %}
@@ -94,4 +92,5 @@ $(this).parent().find(".glyphicon-triangle-bottom").removeClass("glyphicon-trian
 $(this).parent().find(".glyphicon-triangle-right").removeClass("glyphicon-triangle-right").addClass("glyphicon-triangle-bottom");
 });
   </script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
 </div>
