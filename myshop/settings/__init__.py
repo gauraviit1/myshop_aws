@@ -108,26 +108,6 @@ if live:
       'PORT': '',
   }
 }
-
-
-
-
-	urllib.parse.uses_netloc.append("postgres",)
-	url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
-
-	conn = psycopg2.connect(
-	    database=url.path[1:],
-	    user=url.username,
-	    password=url.password,
-	    host=url.hostname,
-	    port=url.port
-	)
-
-	DATABASES['default'] =  dj_database_url.config()
-	# Update database configuration with $DATABASE_URL.
-	db_from_env = dj_database_url.config(conn_max_age=500)
-	DATABASES['default'].update(db_from_env)
-
 else:
 
 	DATABASES = {
