@@ -1,0 +1,13 @@
+branch-defaults:
+  master:
+    environment: hpprisons-env
+    group_suffix: null
+global:
+  application_name: hpprisons
+  branch: null
+  default_ec2_keyname: gaurav
+  default_platform: Python 3.4
+  default_region: ap-south-1
+  profile: eb-cli
+  repository: null
+  sc: git
