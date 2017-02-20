@@ -1,7 +1,7 @@
 {% load static %}
 {% load app_filter %}
 {% load mptt_tags %}
-<li>
+<li class="top-navigation-product-list">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in handicraft_item|tree_info %}
