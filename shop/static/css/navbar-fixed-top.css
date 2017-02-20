@@ -42,3 +42,11 @@ body {
   clear:both;
   }
 }
+.navbar-custom{
+  font-size: 13px;
+}
+
+.navbar .navbar-nav>li>a{
+  margin: 12px 3px;
+  padding: 8px 3px;
+}
