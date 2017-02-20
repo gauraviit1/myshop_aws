@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect
 from shop.models import ModifiedCategory, ModifiedProduct
 from cart.forms import CartAddProductForm
 from testimonials.models import Testimonial_
@@ -28,13 +28,20 @@ def product_list(request, category_slug=None):
         'products': products,
     })
 
+
+
 def category_list(request, category_slug=None):
-    category = get_object_or_404(ModifiedCategory, slug=category_slug)
-    products = ModifiedProduct.objects.filter(category=category).filter(is_unique=True)
+    category = get_object_or_404(ModifiedCategory, slug=category_slug).get_leafnodes()
+    if not category:
+        category = get_list_or_404(ModifiedCategory, slug=category_slug)
+    else:
+        category = get_object_or_404(ModifiedCategory, slug=category_slug).get_leafnodes()
+
+    products = ModifiedProduct.objects.filter(category__in=category).filter(is_unique=True)
     return render(request, 'shop/product/list.html', {
         'category': category,
         'products': products,
-    })    
+    })
 
 
 def product_detail(request, id, slug):
@@ -75,6 +82,3 @@ def pincode_availaiblity(request):
     response = requests.get(address)
     json_data = json.loads(response.text)
     return JsonResponse(json_data)
-
-
-

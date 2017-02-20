@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'storages',
     'mptt',
     'django_mptt_admin',
+	'haystack',
 
 
     'crispy_forms',
@@ -202,3 +203,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}

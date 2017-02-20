@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^orders/', include('orders.urls', namespace='orders')),
     url(r'^testimonial/', include('testimonials.urls', namespace='testimonials')),
     url(r'^maps/', include('storemaps.urls', namespace='maps')),
+    url(r'^search/', include('haystack.urls')),
 
 ]
 
