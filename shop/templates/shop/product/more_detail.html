@@ -22,7 +22,7 @@
               <div class="bzoom_wrap">
                 <ul id = "bzoom">
                   {% if product.get_images  %}
-                  <p class="image_length" hidden>{{product.get_images|length}}</p>                  
+                  <p class="image_length" hidden>{{product.get_images|length}}</p>
                   {% for image in product.get_images %}
                   {% thumbnail image.image "400" as small_image %}
                   <li>
@@ -45,15 +45,11 @@
                 <h5>{{ product.name }}</h5>
                 <p>
                     <div>
-
-
-
                     <div >
                       <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                     </div>
                     <!-- Place this tag where you want the +1 button to render. -->
-
                 </p>
 
                   <div class="row">
@@ -100,7 +96,7 @@
                         $(function () {
                           $('[data-toggle="tooltip"]').tooltip()
                         })
-                      </script> 
+                      </script>
                       <script type="text/javascript">
                         $(document).on('submit', '#pincodeform', function(e){
                           e.preventDefault();
@@ -120,15 +116,11 @@
                               else {
                                 $('#available_check').html(data["message"]);
                               }
-                              
                             }
-                            
                           });
 
-                          
-            
                         });
-                      </script>                       
+                      </script>
                     </div>
                   </div>
 
@@ -171,7 +163,7 @@ $(document).ready( function () {
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
-    } else { 
+    } else {
        $('#available_check').html("Geolocation is not supported by this browser.");
     }
 }
@@ -198,8 +190,8 @@ function showPosition(position) {
                 });
             });
         },
-        error: function () { console.log('error'); } 
-    }); 
+        error: function () { console.log('error'); }
+    });
 }
 function showError(error) {
     switch(error.code) {
@@ -218,7 +210,7 @@ function showError(error) {
     }
 }
 getLocation();
-    function get_pincode_by_location(pincode_received){      
+    function get_pincode_by_location(pincode_received){
       var pincode = pincode_received;
       var pincode_url = "/shop/pincode/";
       $.ajax({
@@ -234,9 +226,9 @@ getLocation();
           }
           else {
             $('#available_check').html(data["message"]);
-          }          
-        }        
-      });    
+          }
+        }
+      });
     };
 });
 </script>

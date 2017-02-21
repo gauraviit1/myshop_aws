@@ -1,4 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect
+from django.db.models import Q
+import operator
+from functools import reduce
 from shop.models import ModifiedCategory, ModifiedProduct
 from cart.forms import CartAddProductForm
 from testimonials.models import Testimonial_
@@ -82,3 +85,18 @@ def pincode_availaiblity(request):
     response = requests.get(address)
     json_data = json.loads(response.text)
     return JsonResponse(json_data)
+
+
+def search(request):
+    query_string = ''
+    found_entries = None
+
+    if (request.GET.get('q')) and request.GET.get('q').strip():
+        values = request.GET.get('q').split()
+        query_string = request.GET.get('q')
+        products = ModifiedProduct.objects.filter(reduce(operator.or_,(Q(name__icontains=x) for
+        x in values))).filter(is_unique=True)
+        return render(request, 'shop/product/list.html',{'products': products, 'query_string':query_string})
+    else:
+        products = ModifiedProduct.objects.all().filter(is_unique=True)
+        return render(request, 'shop/product/list.html',{'products': products})

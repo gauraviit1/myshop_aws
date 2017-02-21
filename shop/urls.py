@@ -4,6 +4,7 @@ from shop import views
 
 urlpatterns = [
     url(r'^$', views.mainPage, name='main_page'),
+    url(r'^search/$', views.search, name="search"),
     url(r'^product/$', views.product_list, name='product_list'),
     url(r'^pincode/$', views.pincode_availaiblity, name='pincode_availaiblity'),
     url(r'^termsandconditions/$', views.termsandconditions, name='terms_and_conditions'),
