@@ -97,6 +97,7 @@ def search(request):
         products = ModifiedProduct.objects.filter(reduce(operator.or_,(Q(name__icontains=x) for
         x in values))).filter(is_unique=True)
         return render(request, 'shop/product/list.html',{'products': products, 'query_string':query_string})
+
     else:
         products = ModifiedProduct.objects.all().filter(is_unique=True)
         return render(request, 'shop/product/list.html',{'products': products})

@@ -16,7 +16,10 @@
 {% block carousel %}
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
 <div class="col-sm-6 col-md-9" style="padding-top: 30px;">
-      {% if query_string %}<p>You searched for "<em><strong>{{query_string}}</strong></em>"</p>{% endif %}
+      {% if query_string %}<p>You searched for "<em><strong>{{query_string}}</strong></em>"</p>
+      {% else %} {% endif %}
+      {% if not products %}<p> Your search didn't produce any results. Please hover over products to see category-wise
+        products </p> {% endif %}
      <div class="row flex" >
          {% for product in products %}
          <div class="col-md-3" >
