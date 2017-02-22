@@ -209,3 +209,4 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
 }
+LOGIN_REDIRECT_URL = '/'

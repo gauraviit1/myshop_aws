@@ -18,19 +18,26 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
+from myshop import views
 
 
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(pattern_name='shop:main_page', permanent=False)),
+    url(r'^$', RedirectView.as_view(pattern_name='shop:main_page',
+        permanent=False)),
     url(r'^admin/', include(admin.site.urls)),
+    url('^accounts/', include('django.contrib.auth.urls')),
     url(r'^shop/', include('shop.urls', namespace='shop')),
     url(r'^cart/', include('cart.urls', namespace='cart')),
     url(r'^orders/', include('orders.urls', namespace='orders')),
-    url(r'^testimonial/', include('testimonials.urls', namespace='testimonials')),
+    url(r'^testimonial/', include('testimonials.urls',
+        namespace='testimonials')),
     url(r'^maps/', include('storemaps.urls', namespace='maps')),
     url(r'^search/', include('haystack.urls')),
+    url(r'^register/$', views.register, name='register'),
+
 
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

@@ -197,22 +197,33 @@
 
 
             <div class="col-md-5 pull-right">
-              <div class="col-md-5 " style ="padding-top:23px;">
+              <div class="col-md-5 pull-right" style ="padding-top:23px;">
+                {% if user.is_authenticated %}
+                 <strong>{{ user.get_username }}'s</strong>
+                   {% with total_items=cart|length %}
+                      {% if cart|length > 0 %}
+                      <span class="glyphicon glyphicon-shopping-cart"></span>:
+                      <a href="{% url 'cart:cart_detail' %}" >
+                      {{ total_items }} item{{ total_items|pluralize }}
+                      {% else %}
+                        <span class="glyphicon glyphicon-shopping-cart"></span> is empty
+                      {% endif %}
 
-                {% with total_items=cart|length %}
-                {% if cart|length > 0 %}<span>
-                    Your <span class="glyphicon glyphicon-shopping-cart"></span>:
-                    <a href="{% url 'cart:cart_detail' %}" class="bg-primary" >
-                    {{ total_items }} item{{ total_items|pluralize }},
-                    Rs. {{ cart.get_total_price }}
-                    </a>
-                    </span>
-                 {% else %}
-                    <span class="glyphicon glyphicon-shopping-cart"></span> is empty
+                   {% endwith %}
+                   <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+                   {% else %}
+                   Your
+                   {% with total_items=cart|length %}
+                      {% if cart|length > 0 %}
+                      <span class="glyphicon glyphicon-shopping-cart"></span>:
+                      <a href="{% url 'cart:cart_detail' %}" >
+                      {{ total_items }} item{{ total_items|pluralize }}
+                      {% else %}
+                        <span class="glyphicon glyphicon-shopping-cart"></span> is empty
+                      {% endif %}
+                    {% endwith %}
+                    <a href="{% url 'login'%}?next={{request.path}}">Login/Sign Up</a>
                 {% endif %}
-                {% endwith %}
-                <a href="#" class= "pull-right" style="padding-right:2px;">Log in</a>
-                <a href="#" class= "pull-right" style="padding-right:2px;">Sign Up</a>
 
               </div>
               <div class="col-sm-7 col-md-7 pull-right">
