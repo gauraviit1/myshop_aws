@@ -7,10 +7,10 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="font-size:16px;">
-          Bakery <span class="glyphicon glyphicon-triangle-right pull-right"></span> </a>
+          Bakery <span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseOne" class="panel-collapse collapse in sidebarlist">
+        <div id="collapseOne" class="panel-collapse collapse sidebarlist">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in bakery_item|tree_info %}
@@ -51,7 +51,7 @@
                                 <a href="{{ product.get_absolute_url }}">{{ product.name_for_hierarchial_list }}</a>
                             </li></ul>
                         {% else %}
-                        {% endif %} 
+                        {% endif %}
                         {% endfor %}
                 {% for level in structure.closed_levels %}</li></ul>{% endfor %}
             {% endfor %}
