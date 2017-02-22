@@ -1,3 +1,7 @@
 .top-navigation-product-list> ul >li >a {
-color: red;
+color: #1b61e2;
+}
+
+.top-navigation-product-list> ul >li {
+color: #305087;
 }
