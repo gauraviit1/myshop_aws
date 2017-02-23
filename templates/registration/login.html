@@ -1,7 +1,14 @@
-{% extends "shop/base.html" %}
+{% extends "shop/product/main.html" %}
+{% load crispy_forms_tags %}
 
-{% block content %}
 
+    {% block sidebar %}
+    {% include "shop/sidebar.html" %}
+    {% endblock sidebar %}
+
+
+{% block testimonial %}
+<div class="col-md-2" style="font-size: 12px;">
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
@@ -19,14 +26,7 @@
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</div>
-<div>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</div>
+{{ form|crispy }}
 
 <div>
   <input type="submit" value="login" />
@@ -38,5 +38,5 @@
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 <p>Please, use the following form to log-in. If you don't have an
 account <a href="{% url "register" %}">register here</a></p>
-
+</div>
 {% endblock %}
