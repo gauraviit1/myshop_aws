@@ -8,6 +8,7 @@ import os
 import dj_database_url
 import psycopg2
 import urllib
+from django.conf import global_settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = (
     # 'dal',
     # 'dal_select2',
+	'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -90,6 +92,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+				'django.template.context_processors.media',
+                'django.template.context_processors.static',
+				'django.template.context_processors.tz',
                 'cart.context_processors.cart',
                 'shop.context_processors.bakery_items',
                 'shop.context_processors.handicraft_items',
@@ -242,3 +247,5 @@ DJRICHTEXTFIELD_CONFIG = {
 
 
 HTML_MINIFY = True
+
+BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
