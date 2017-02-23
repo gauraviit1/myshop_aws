@@ -10,6 +10,7 @@ django-crispy-forms==1.6.1
 django-haystack==2.6.0
 django-mptt==0.8.7
 django-mptt-admin==0.4.3
+django-richtextfield==1.1
 django-storages==1.5.1
 django-treebeard==4.1.0
 docker-py==1.7.2

@@ -5,6 +5,7 @@ from django.contrib.postgres.fields import JSONField
 import re
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.html import mark_safe
+from djrichtextfield.models import RichTextField
 # Create your models here.
 
 
@@ -81,7 +82,7 @@ class ModifiedCategory(MPTTModel):
     slug = models.SlugField(db_index=True, unique=True)
     parent = TreeForeignKey('self', null=True, blank=True,
                             related_name='children', db_index=True)
-    description = models.TextField(blank=True)
+    description = RichTextField(blank=True)
 
     class MPTTMeta:
         order_insertion_by = ['name']
@@ -129,7 +130,7 @@ class ModifiedProduct(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True,
                             related_name='children', db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
-    description = models.TextField(blank=True)
+    description = RichTextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
     stock = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
@@ -141,7 +142,7 @@ class ModifiedProduct(MPTTModel):
     is_unique = models.BooleanField(default = True)
 
     def __str__(self):
-        return self.category.name + " " + self.name 
+        return self.category.name + " " + self.name
 
     class MPTTMeta:
         order_insertion_by = ['name']
@@ -161,7 +162,7 @@ class ModifiedProduct(MPTTModel):
             else:
                 return self.parent.get_features()
         except:
-            pass        
+            pass
 
     def get_images(self):
         try:
@@ -171,7 +172,7 @@ class ModifiedProduct(MPTTModel):
                 return self.parent.get_images()
         except:
             pass
- 
+
 
     def get_description(self):
         try:

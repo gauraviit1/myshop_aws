@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^maps/', include('storemaps.urls', namespace='maps')),
     url(r'^search/', include('haystack.urls')),
     url(r'^register/$', views.register, name='register'),
+    url(r'^djrichtextfield/', include('djrichtextfield.urls'))
 
 
 ]
