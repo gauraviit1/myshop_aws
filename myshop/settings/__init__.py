@@ -49,7 +49,7 @@ INSTALLED_APPS = (
     'django_mptt_admin',
 	'haystack',
 	'djrichtextfield',
-
+	'compressor',
 
     'crispy_forms',
     'sorl.thumbnail',
@@ -179,6 +179,10 @@ if live:
 	# STATIC_URL = 'http://s3.amazonaws.com/'  + AWS_STORAGE_BUCKET_NAME +"/"
 	ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
+	COMPRESS_ROOT = STATIC_ROOT
+	COMPRESS_STORAGE = STATICFILES_STORAGE
+	COMPRESS_URL = STATIC_URL
+
 else:
 	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 	STATIC_URL = '/static/'
@@ -187,6 +191,15 @@ else:
 	STATICFILES_DIRS = (
 	    os.path.join(PROJECT_ROOT, 'static'),
 	)
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+COMPRESS_ENABLED = True
 
 
 MEDIA_URL = '/media/'
