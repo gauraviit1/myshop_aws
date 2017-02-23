@@ -1,5 +1,6 @@
 appdirs==1.4.0
 awsebcli==3.9.1
+beautifulsoup4==4.5.3
 boto==2.45.0
 botocore==1.5.14
 cement==2.8.2
@@ -8,6 +9,7 @@ dj-database-url==0.4.1
 Django==1.10.4
 django-crispy-forms==1.6.1
 django-haystack==2.6.0
+django-htmlmin==0.10.0
 django-mptt==0.8.7
 django-mptt-admin==0.4.3
 django-richtextfield==1.1
@@ -18,6 +20,7 @@ dockerpty==0.4.1
 docopt==0.6.2
 docutils==0.13.1
 gunicorn==19.6.0
+html5lib==0.999999999
 jmespath==0.9.1
 packaging==16.8
 pathspec==0.5.0
@@ -31,5 +34,6 @@ semantic-version==2.5.0
 six==1.10.0
 sorl-thumbnail==12.3
 tabulate==0.7.5
+webencodings==0.5
 websocket-client==0.40.0
 whitenoise==2.0.6

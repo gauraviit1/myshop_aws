@@ -70,6 +70,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+	'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware'
 )
 
 ROOT_URLCONF = 'myshop.urls'
@@ -213,7 +216,6 @@ HAYSTACK_CONNECTIONS = {
 LOGIN_REDIRECT_URL = '/'
 
 
-
 DJRICHTEXTFIELD_CONFIG = {
     'js': ['//tinymce.cachefly.net/4.1/tinymce.min.js'],
     'init_template': 'djrichtextfield/init/tinymce.js',
@@ -224,3 +226,6 @@ DJRICHTEXTFIELD_CONFIG = {
         'width': 700
     }
 }
+
+
+HTML_MINIFY = True
