@@ -17,8 +17,8 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if live:
 	SECRET_KEY = os.environ.get('SECRET_KEY')
   # SECURITY WARNING: don't run with debug turned on in production!
-	DEBUG = True
-	TEMPLATE_DEBUG = True
+	DEBUG = False
+	TEMPLATE_DEBUG = False
 
 
 else:
@@ -52,6 +52,7 @@ INSTALLED_APPS = (
 	'haystack',
 	'djrichtextfield',
 	'compressor',
+	'debug_toolbar',
 
     'crispy_forms',
     'sorl.thumbnail',
@@ -64,6 +65,7 @@ INSTALLED_APPS = (
 
 
 MIDDLEWARE_CLASSES = (
+	'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -75,7 +77,8 @@ MIDDLEWARE_CLASSES = (
 
 	'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware'
-)
+
+	)
 
 ROOT_URLCONF = 'myshop.urls'
 
@@ -166,6 +169,7 @@ if live:
 	AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
 	AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+	AWS_PRELOAD_METADATA= True
 
 	STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 	# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
@@ -250,3 +254,6 @@ DJRICHTEXTFIELD_CONFIG = {
 HTML_MINIFY = True
 
 BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
+
+
+INTERNAL_IPS = ['127.0.0.1',]
