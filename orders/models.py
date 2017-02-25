@@ -1,5 +1,5 @@
 from django.db import models
-from shop.models import Product
+from shop.models import ModifiedProduct
 # Create your models here.
 
 class Order(models.Model):
@@ -25,7 +25,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items')
-    product = models.ForeignKey(Product, related_name='order_items')
+    product = models.ForeignKey(ModifiedProduct, related_name='order_items')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
 
