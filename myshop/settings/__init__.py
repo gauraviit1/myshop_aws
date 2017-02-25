@@ -250,13 +250,11 @@ DJRICHTEXTFIELD_CONFIG = {
     }
 }
 
-
 HTML_MINIFY = True
 
 BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
 
-
 INTERNAL_IPS = ['127.0.0.1',]
 
 # import celery
-from .celery import app as celery_app
+from myshop.celery import app as celery_app
