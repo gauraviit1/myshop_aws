@@ -4,6 +4,8 @@ from orders.models import OrderItem, Order
 from orders.forms import OrderCreateForm
 from cart.cart import Cart
 from django.contrib.auth.decorators import login_required
+from orders.tasks import order_created
+
 
 # Create your views here.
 @login_required
@@ -19,9 +21,9 @@ def order_create(request):
                                          price=item['price'],
                                          quantity=item['quantity'])
             cart.clear()
-
-            order_created(order.id)
-            return render(request,'orders/order/created.html',{
+            # launch asynchronous task
+            order_created.delay(order.id)
+            return render(request, 'orders/order/created.html', {
                 'order': order
             })
     else:
