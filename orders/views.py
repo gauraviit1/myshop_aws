@@ -21,6 +21,7 @@ def order_create(request):
                                          price=item['price'],
                                          quantity=item['quantity'])
             cart.clear()
+
             # launch asynchronous task
             order_created.delay(order.id)
             return render(request, 'orders/order/created.html', {
@@ -28,17 +29,5 @@ def order_create(request):
             })
     else:
         form = OrderCreateForm()
-    return render(request,'orders/order/create.html',{'cart':cart, 'form':form})
-
-
-@login_required
-def order_created(order_id):
-    order = Order.objects.get(id=order_id)
-    subject = 'Order nr.'.format(order_id)
-    message = 'Dear {},\n\nYou have successfully placed an order. Your' \
-              ' order id is {}'.format(order.first_name, order.id)
-    mail_sent = send_mail(subject,
-                          message,
-                          'admin@myshop.com',
-                          [order.email])
-    return mail_sent
+    return render(request, 'orders/order/create.html', {'cart': cart,
+                                                        'form': form})
