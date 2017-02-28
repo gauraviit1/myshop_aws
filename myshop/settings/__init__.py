@@ -56,7 +56,9 @@ INSTALLED_APPS = (
 
     'crispy_forms',
     'sorl.thumbnail',
+
     'shop',
+	'pincodes',
     'cart',
     'orders',
     'testimonials',
@@ -255,3 +257,6 @@ HTML_MINIFY = True
 BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
 
 INTERNAL_IPS = ['127.0.0.1',]
+
+
+PINCODE_SESSION_ID = 'pincode'

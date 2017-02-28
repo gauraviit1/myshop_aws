@@ -1,5 +1,6 @@
 from django.db import models
 from shop.models import ModifiedProduct
+from pincodes.models import Pincode
 # Create your models here.
 
 class Order(models.Model):
@@ -34,3 +35,11 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+
+class ProductAvailability(models.Model):
+    product = models.OneToOneField(ModifiedProduct, primary_key=True)
+    available_pincode = models.ManyToManyField(Pincode)
+
+    def __str__(self):
+        return self.product.name
