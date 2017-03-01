@@ -12,7 +12,7 @@ class OrderCreateForm(forms.ModelForm):
 class ProductAvailabilityForm(forms.ModelForm):
     class Meta:
         model = ProductAvailability
-        fields = ('product', 'available_pincode')
+        fields = ('product', 'available_pincode', 'availability_group')
         widgets = {
             'available_pincode': autocomplete.ModelSelect2Multiple(
                 'pincodes:pincodes-autocomplete'

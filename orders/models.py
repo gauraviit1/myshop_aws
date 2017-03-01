@@ -41,5 +41,11 @@ class ProductAvailability(models.Model):
     product = models.OneToOneField(ModifiedProduct, primary_key=True)
     available_pincode = models.ManyToManyField(Pincode)
 
+    STATUSES = (
+        (0, 'All'),
+        (1, 'Selective Places'))
+    availability_group = models.IntegerField(choices=STATUSES, default=0)
+
+
     def __str__(self):
         return self.product.name
