@@ -8,6 +8,7 @@ from testimonials.models import Testimonial_
 import requests
 import json
 from shop.forms import PincodeForm
+from cart.views import check_availability
 
 from django.http import JsonResponse
 
@@ -79,13 +80,35 @@ def privacypolicy(request):
     return render(request, 'shop/static_templates/privacypolicy.html')
 
 
-def pincode_availaiblity(request):
+def pincode_availaiblity(request, id):
     pincode = request.GET.get('pincode', None)
-    address = "https://pincode.saratchandra.in/api/pincode/" + str(pincode)
-    request.session['pincode'] = str(pincode)
-    response = requests.get(address)
-    json_data = json.loads(response.text)
-    return JsonResponse(json_data)
+    availability_details = check_availability(int(pincode), int(id))
+
+    if availability_details['pincode_details']:
+        is_valid_Pincode = True
+        office = availability_details['pincode_details'][0].officeName
+        district = availability_details['pincode_details'][0].districtName
+        if availability_details['availability']:
+            is_available = True
+        else:
+            is_available = False
+    else:
+        office = None
+        district = None
+        is_valid_Pincode = False
+        is_available = False
+    data = {
+            'is_valid_Pincode': is_valid_Pincode,
+            'is_available': is_available,
+            'office': office,
+            'district': district,
+    }
+    #
+    # # address = "https://pincode.saratchandra.in/api/pincode/" + str(pincode)
+    # # request.session['pincode'] = str(pincode)
+    # response = requests.get(address)
+    # json_data = json.loads(response.text)
+    return JsonResponse(data)
 
 
 def search(request):
