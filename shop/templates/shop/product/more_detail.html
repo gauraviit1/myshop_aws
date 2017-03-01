@@ -102,7 +102,9 @@
                       </form>
                       <p id="available_check"></p>
                       {% if request.session.pincode %}
-                        <p>You have set your location pincode to be :<b id="pincode">{{request.session.pincode}}</b></p>
+                        <p id ="pincode">You have set your location pincode to be :<b>{{request.session.pincode}}</b></p>
+                        {% else %}
+                        <p id="pincode"></p>
                       {% endif %}
 
                       <script type="text/javascript">
@@ -116,6 +118,8 @@
                           var pincode = $('#id_pincode').val();
                           var product_id = $('#product_id').html();
                           var pincode_url = "/shop/pincode/" + product_id +"/";
+                          var set_pincode_msg_start = "You have set your location pincode to be :<b>"
+                          var set_pincode_msg_end = "</b>"
 
                           $.ajax({
                             url: pincode_url,
@@ -124,18 +128,19 @@
                             },
                             dataType: 'json',
                             success: function(data){
+
                               if (data["is_valid_Pincode"]){
                                   if (data["is_available"]){
                                     $('#available_check').html("Product is available at " + data["office"] +" " + data["district"]);
-                                    $('#pincode').html(pincode);
+                                    $('#pincode').html(set_pincode_msg_start + pincode + set_pincode_msg_end);
                                   } else {
                                     $('#available_check').html("Sorry ! Product is not available at " + data["office"] +" " + data["district"]);
-                                    $('#pincode').html(pincode);
+                                    $('#pincode').html(set_pincode_msg_start + pincode + set_pincode_msg_end);
                                   }
                               }
                               else {
                                 $('#available_check').html("The pincode entered by you is invalid. Please enter correct pincode.");
-                                $('#pincode').html(pincode);
+                                $('#pincode').html(set_pincode_msg_start + pincode + set_pincode_msg_end);
                               }
                             }
                           });

@@ -105,7 +105,7 @@ def pincode_availaiblity(request, id):
     }
     #
     # # address = "https://pincode.saratchandra.in/api/pincode/" + str(pincode)
-    # # request.session['pincode'] = str(pincode)
+    request.session['pincode'] = str(pincode)
     # response = requests.get(address)
     # json_data = json.loads(response.text)
     return JsonResponse(data)
