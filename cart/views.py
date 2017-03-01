@@ -12,16 +12,39 @@ def check_availability(pincode, product_id):
     pincode_details = Pincode.objects.filter(pincode=pincode)
     availability = False
     if pincode_details:
-        universal_availability = ModifiedProduct.objects.get(pk=product_id).productavailability.available_pincode.filter(pincode=999999)
-        if universal_availability:
-            return {'availability': True, 'pincode_details': pincode_details}
-        else:
-            availability = ModifiedProduct.objects.get(pk=product_id).productavailability.available_pincode.filter(pincode=pincode)
-            if availability:
-                availability = True
+        print("I cam here")
+        product = ModifiedProduct.objects.get(pk=product_id)
+        all_related_product = [product] + \
+                              [a for a in product.get_ancestors().reverse()]
+
+        search_product = None
+
+        for j in range(len(all_related_product)):
+            try:
+                search_product = all_related_product[j].productavailability
+                break
+            except:
+                pass
+
+        if search_product:
+            print("I cam here")
+            universal_availability = search_product.available_pincode\
+                                     .filter(pincode=999999)
+
+            if universal_availability:
+                return {'availability': True,
+                        'pincode_details': pincode_details}
             else:
-                availability = False
-            return {'availability': availability, 'pincode_details': pincode_details}
+                availability = search_product.available_pincode\
+                               .filter(pincode=pincode)
+                if availability:
+                    availability = True
+                else:
+                    availability = False
+                return {'availability': availability,
+                        'pincode_details': pincode_details}
+        else:
+            return {'availability': False, 'pincode_details': pincode_details}
     else:
         return {'availability': False, 'pincode_details': None}
 
@@ -65,6 +88,6 @@ def cart_detail(request):
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(
                                        initial={'quantity': item['quantity'],
-                                                'update':True}
+                                                'update': True}
                                        )
     return render(request, 'cart/detail.html', {'cart': cart})

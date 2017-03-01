@@ -1,6 +1,8 @@
 from django.contrib import admin
 from shop.models import Cateogry, Product, ModifiedCategory, ModifiedProduct, ProductImages
 from django_mptt_admin.admin import DjangoMpttAdmin
+from orders.forms import ProductAvailabilityForm
+from orders.models import ProductAvailability
 
 
 # Register your models here.\
@@ -44,13 +46,18 @@ class ProductImagesAdmin(admin.StackedInline):
     readonly_fields = ('image_tag',)
 
 
+class ProductAvailabilityAdminInline(admin.StackedInline):
+    model = ProductAvailability
+    form = ProductAvailabilityForm
+
+
 class ModifiedProductAdmin(DjangoMpttAdmin):
     tree_auto_open = 3
     list_display = ['name', 'price', 'option_type', 'is_unique']
     list_editable = ['price', 'option_type', 'is_unique']
     list_filter = ['name', 'price', 'category', 'parent']
     prepopulated_fields = {"slug": ("name",)}
-    inlines = [ProductImagesAdmin, ]
+    inlines = [ProductAvailabilityAdminInline, ProductImagesAdmin, ]
 
 
 admin.site.register(ModifiedProduct, ModifiedProductAdmin)

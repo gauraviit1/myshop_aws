@@ -46,6 +46,5 @@ class ProductAvailability(models.Model):
         (1, 'Selective Places'))
     availability_group = models.IntegerField(choices=STATUSES, default=0)
 
-
     def __str__(self):
         return self.product.name
