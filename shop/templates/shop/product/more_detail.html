@@ -1,6 +1,6 @@
    {% load static %}
    {% load thumbnail %}
-   {% load compress %}
+
     <div class ="container" style="padding-top: 50px" id ="products">
         <div class="row">
 
@@ -100,7 +100,7 @@
                           <input type="submit" value="Check Availablity" />
                       </form>
                       <p id="available_check"></p>
-                      {% compress js%}
+
                       <script type="text/javascript">
                         $(function () {
                           $('[data-toggle="tooltip"]').tooltip()
@@ -130,7 +130,7 @@
 
                         });
                       </script>
-                      {% endcompress %}
+      
                     </div>
                   </div>
                 {% if product.get_description %}
