@@ -42,7 +42,7 @@
                    {% endif %}
                  </div>
    <div class="caption text-center">
-     <a href="{{product.get_absolute_url}}"><p>{{ product.name }}</p></a>
+     <a href="{{product.get_absolute_url}}"><p>{% if product.optional_visible_name %}{{product.optional_visible_name}} {% else %}{{ product.name }}{% endif %}</p></a>
      <p><span class="WebRupee">Rs</span> {{ product.price }}</p>
    </div>
  </div>

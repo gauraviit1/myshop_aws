@@ -33,7 +33,7 @@
                         >
                       </a>
                       {% endif %}
-                     <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
+                     <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{% if product.optional_visible_name %}{{product.optional_visible_name}} {% else %}{{ product.name }}{% endif %}</a></p>
                   </div>
                 </div>
 
@@ -57,7 +57,7 @@
                           >
                         </a>
                         {% endif %}
-                       <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
+                       <p class="text-center" style="padding-top:10px;"><a href="{{ product.get_absolute_url }}">{% if product.optional_visible_name %}{{product.optional_visible_name}} {% else %}{{ product.name }}{% endif %}</a></p>
                     </div>
                 </div>
 
