@@ -1,5 +1,6 @@
-   {% load static %}
-   {% load thumbnail %}
+{% load static %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
 
     <div class ="container" style="padding-top: 50px" id ="products">
         <div class="row">
@@ -53,7 +54,7 @@
                 {% endfor %}
               </div>
             {% endif %}
-                <h5>{{ product.name }}</h5>
+                <h5>{% if product.optional_visible_name %}{{product.optional_visible_name}} {% else %}{{ product.name }}{% endif %}</h5>
                 <p>
                     <div>
                     <div >
@@ -91,20 +92,20 @@
                     </div>
                     <div class="col-sm-6 nopadding" style="font-size: 11px;">
                       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
-                      <p>Estimated Shipping Charges</p>
-                      <p>Rs. 30</p>
+                      <p class="availability-col">Estimated Shipping Charges</p>
+                      <p class="availability-col">Rs. 30</p>
                       <a href="#" data-toggle="tooltip" data-html="true" data-placement="bottom" title="For all orders above <span class='WebRupee'>Rs.</span> 800, shipping is free. Otherwise the charges are based on the distance between our nearest serving store and the delivery address.">Read Shipping Charges Policy</a>
                       <form action="#" method="post" id ="pincodeform">
                           {% csrf_token %}
-                          {{ pincode_form}}
+                          {{ pincode_form|crispy}}
                           <p id="product_id" hidden>{{product.id}}<p>
-                          <input type="submit" value="Check Availablity" />
+                          <input class="btn btn-xs btn-info" type="submit" value="Check Availablity" />
                       </form>
-                      <p id="available_check"></p>
+                      <p class="availability-col" id="available_check"></p>
                       {% if request.session.pincode %}
-                        <p id ="pincode">You have set your location pincode to be :<b>{{request.session.pincode}}</b></p>
+                        <p class="availability-col" id ="pincode">You have set your location pincode to be :<b>{{request.session.pincode}}</b></p>
                         {% else %}
-                        <p id="pincode"></p>
+                        <p class="availability-col" id="pincode"></p>
                       {% endif %}
 
                       <script type="text/javascript">

@@ -6,3 +6,4 @@ from pincodes.models import Pincode
 @admin.register(Pincode)
 class PincodeAdmin(admin.ModelAdmin):
     list_display = ['pincode', 'officeName', 'districtName', 'stateName']
+    search_fields = ['pincode', 'officeName', 'districtName']

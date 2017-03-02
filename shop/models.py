@@ -138,8 +138,9 @@ class ModifiedProduct(MPTTModel):
     updated = models.DateTimeField(auto_now=True)
     features = JSONField(blank=True, null=True)
     option_type = models.CharField(max_length=20, blank=True)
-    visible = models.BooleanField(default = True)
-    is_unique = models.BooleanField(default = True)
+    visible = models.BooleanField(default=True)
+    is_unique = models.BooleanField(default=True)
+    optional_visible_name = models.CharField(max_length=30, blank=True)
 
     def __str__(self):
         return self.category.name + " " + self.name

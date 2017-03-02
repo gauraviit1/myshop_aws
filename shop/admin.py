@@ -53,9 +53,11 @@ class ProductAvailabilityAdminInline(admin.StackedInline):
 
 class ModifiedProductAdmin(DjangoMpttAdmin):
     tree_auto_open = 3
-    list_display = ['name', 'price', 'option_type', 'is_unique']
-    list_editable = ['price', 'option_type', 'is_unique']
-    list_filter = ['name', 'price', 'category', 'parent']
+    list_display = ['name', 'optional_visible_name', 'price',
+                    'option_type', 'is_unique']
+    list_editable = ['price', 'option_type', 'is_unique',
+                     'optional_visible_name']
+    list_filter = ['price', 'category', 'parent']
     prepopulated_fields = {"slug": ("name",)}
     inlines = [ProductAvailabilityAdminInline, ProductImagesAdmin, ]
 
