@@ -1,44 +1,45 @@
 {% load static %}
+<link rel="stylesheet" href='{% static "css/morphext.css" %}'>
+<script src= '{% static "js/morphext.min.js" %}'></script>
 <div class='col-md-2 nopadding' style="padding-top: 30px;">
   <div class="panel panel-info" >
     <div class="panel-heading" style="font-size: 11px"> What Patrons say about us....</div>
     <div class="panel-body bg-info" style="min-height: 319px; color: #9A3334" >
 		<div class="quote">
 		<i class="fa fa-quote-left fa-pull-left" style="display: inline;"></i>
-		<p id="testimonial" style="display: inline; text-align: justify-all; font-size: 12px;"> {{first_testimonial.comment|truncatewords:50 }} <p>
+		<p id="testimonial" style="display: inline; text-align: justify-all; font-size: 12px;"> <span id="js-rotating-1">{% for testimonial in testimonials  %}
+		  {% if not forloop.last %} {{testimonial.comment|truncatewords:60}} % {% else %} {{testimonial.comment|truncatewords:60}} {% endif %}
+		{% endfor %}</span> <p>
 		<i class="fa fa-quote-right fa-pull-right" style="display: inline;"></i>
 		</div>
-		<p style="text-align: right; color:#217C7E" id="testimonial_name">&mdash;  {{first_testimonial.name}}</p>
+		<p style="text-align: right; color:#217C7E" id="testimonial_name">&mdash;  <span id="js-rotating-2">{% for testimonial in testimonials  %}
+		  {% if not forloop.last %} {{testimonial.name}} % {% else %} {{testimonial.name}} {% endif %} {% endfor %}</span></p>
 
   </div>
   </div>
 </div>
 
-
-<script>
-
-  var testimonial_comment =[];
-  var testimonial_name =[];
-  {% for testimonial in testimonials|slice:":5" %}
-  testimonial_comment.push("{{testimonial.comment|truncatewords:50}}");
-  testimonial_name.push("{{testimonial.name}}");
-
-  {% endfor %}
-  var testimonial_length = testimonial_comment.length
-  var num = 0;
-
-function change_testimonial(){
-   // if (i == 0){
-      $('p#testimonial').animate({'opacity':0}, 400, function(){
-        $(this).html(testimonial_comment[num]).animate({'opacity':1},400);
-      });
-      $('p#testimonial_name').animate({'opacity':0}, 400, function(){
-        $(this).html(testimonial_name[num+1]).animate({'opacity':1},400);
-      });
-      num = (num+1)% testimonial_length;
-
-   };
-
-	window.setInterval(change_testimonial,4000);
-
+<script type="text/javascript">
+$("#js-rotating-1").Morphext({
+  // The [in] animation type. Refer to Animate.css for a list of available animations.
+  animation: "flipInY",
+  // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+  separator: "%",
+  // The delay between the changing of each phrase in milliseconds.
+  speed: 6000,
+  complete: function () {
+      // Called after the entrance animation is executed.
+  }
+});
+$("#js-rotating-2").Morphext({
+  // The [in] animation type. Refer to Animate.css for a list of available animations.
+  animation: "flipInY",
+  // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+  separator: "%",
+  // The delay between the changing of each phrase in milliseconds.
+  speed: 6000,
+  complete: function () {
+      // Called after the entrance animation is executed.
+  }
+});
 </script>
