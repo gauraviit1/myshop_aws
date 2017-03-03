@@ -68,7 +68,7 @@
                     <div class="col-sm-6">
 
                 <h6><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h6>
-                <p ><span class="WebRupee">Rs</span> {{ product.price }} <span class="small"> + Shipping Charges</span> </p>
+                <p ><span class="WebRupee">Rs</span> {{ product.price }}{% if product.price < 800 %}<span class="small"> + Shipping Charges</span>{% endif %}  </p>
                 <form action="{% url 'cart:cart_add' product.id %}?prev={{request.path}}" method="post">
                     {{ cart_product_form }}
                     {% csrf_token %}
@@ -93,7 +93,7 @@
                     <div class="col-sm-6 nopadding" style="font-size: 11px;">
                       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
                       <p class="availability-col">Estimated Shipping Charges</p>
-                      <p class="availability-col">Rs. 30</p>
+                      <p class="availability-col">{% if product.price < 800 %} <span class="WebRupee">Rs</span> 40 {% else %}You are eligible for free delivery.{% endif %}</p>
                       <a href="#" data-toggle="tooltip" data-html="true" data-placement="bottom" title="For all orders above <span class='WebRupee'>Rs.</span> 800, shipping is free. Otherwise the charges are based on the distance between our nearest serving store and the delivery address.">Read Shipping Charges Policy</a>
                       <form action="#" method="post" id ="pincodeform">
                           {% csrf_token %}
