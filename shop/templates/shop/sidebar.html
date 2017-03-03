@@ -10,7 +10,7 @@
           Bakery <span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseOne" class="panel-collapse collapse sidebarlist">
+        <div id="collapseOne" class="panel-collapse collapse sidebarlist" style="max-height:228px; max-width:194px; overflow:auto;">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in bakery_item|tree_info %}
@@ -40,7 +40,7 @@
           Clothes<span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseTwo" class="panel-collapse collapse sidebarlist">
+        <div id="collapseTwo" class="panel-collapse collapse sidebarlist" style="max-height:228px; max-width:194px; overflow:auto;" >
             {% full_tree_for_model shop.ModifiedProduct as products %}
             {% for category,structure in cloth_item|tree_info %}
                 {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
@@ -64,7 +64,7 @@
           Handicrafts<span class="glyphicon glyphicon-triangle-bottom pull-right"></span> </a>
         </h4>
       </div>
-        <div id="collapseThree" class="panel-collapse collapse sidebarlist">
+        <div id="collapseThree" class="panel-collapse collapse sidebarlist" style="max-height:228px; max-width:194px; overflow:auto;">
             {% full_tree_for_model shop.ModifiedProduct as products %}
 
             {% for category,structure in handicraft_item|tree_info %}
@@ -93,4 +93,96 @@ $(this).parent().find(".glyphicon-triangle-right").removeClass("glyphicon-triang
 });
   </script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+  <style>
+  .vertical-track {
+      width: 2px;
+      background: rgba(0, 0, 0, 0);
+      margin-right: 2px;
+      border-radius: 10px;
+      -webkit-transition: background 250ms linear;
+      transition: background 250ms linear;
+  }
+
+  .horizontal-track {
+      height: 2px;
+      background: rgba(0, 0, 0, 0);
+      margin-bottom: 2px;
+      border-radius: 10px;
+      -webkit-transition: background 250ms linear;
+      transition: background 250ms linear;
+  }
+
+  .vertical-track:hover,
+  .vertical-track.dragging {
+      background: #d9d9d9; /* Browsers without rgba support */
+      background: rgba(0, 0, 0, 0.15);
+  }
+
+  .horizontal-track:hover,
+  .horizontal-track.dragging {
+      background: #d9d9d9; /* Browsers without rgba support */
+      background: rgba(0, 0, 0, 0.15);
+  }
+
+  .vertical-handle {
+      width: 2px;
+      right: 0;
+      background: #4582EC;
+      border-radius: 7px;
+      -webkit-transition: width 250ms;
+      transition: width 250ms;
+  }
+  .horizontal-handle {
+      height: 2px;
+      right: 0;
+      background: #4582EC;
+      border-radius: 7px;
+      -webkit-transition: width 250ms;
+      transition: width 250ms;
+  }
+
+  .vertical-track:hover .vertical-handle,
+  .vertical-track.dragging .vertical-handle {
+      width: 5px;
+  }
+  .horizontal-track:hover .horizontal-handle,
+  .horizontal-track.dragging .horizontal-handle {
+      height: 5px;
+  }
+
+
+  </style>
+  <script src= '{% static "js/enscroll-0.6.2.min.js" %}'>
+
+  </script>
+  <script type="text/javascript">
+  $('#collapseTwo').enscroll({
+  showOnHover: true,
+  verticalTrackClass: 'vertical-track',
+  verticalHandleClass: 'vertical-handle',
+  horizontalScrolling:	true,
+  horizontalTrackClass: 'horizontal-track',
+  horizontalHandleClass: 'horizontal-handle',
+
+});
+
+$('#collapseOne').enscroll({
+showOnHover: true,
+verticalTrackClass: 'vertical-track',
+verticalHandleClass: 'vertical-handle',
+horizontalScrolling:	true,
+horizontalTrackClass: 'horizontal-track',
+horizontalHandleClass: 'horizontal-handle',
+
+});
+$('#collapseThree').enscroll({
+showOnHover: true,
+verticalTrackClass: 'vertical-track',
+verticalHandleClass: 'vertical-handle',
+horizontalScrolling:	true,
+horizontalTrackClass: 'horizontal-track',
+horizontalHandleClass: 'horizontal-handle',
+
+});
+  </script>
 </div>
